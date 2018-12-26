@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import './_variables';
+
+body, html, * {
+  font-family: 'Roboto', sans-serif;
+}
+
+.tb-frame {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: $border-radius-standard;
+  padding: 15px;
+  transition: $standard-transition;
+
+  &.focused {
+    border: 1px solid $primary-color-dark;
+  }
+}

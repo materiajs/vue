@@ -1,0 +1,26 @@
+$active-border: green;
+
+// box shading
+$box-shadow-standard: 1px 1px 3px 1px rgba(0,0,0,0.3);
+
+// Borders
+$border-radius-standard: 15px;
+
+// Transitions
+$standard-transition: all 0.2s ease;
+
+// theme
+$primary-color-dark: #1976D2;
+$primary-color: #2196F3;
+$primary-color-light: #BBDEFB;
+$primary-color-text: #FFFFFF;
+$accent-color: #607D8B;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #BDBDBD;
+
+// Typography
+$typography-primary-text-color: #555;
+
+// Dividers
+$divider-primary: $primary-color-dark;

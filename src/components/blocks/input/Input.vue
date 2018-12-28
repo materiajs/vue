@@ -2,7 +2,7 @@
   <div
     @click="onClickInputWrapper"
     class="tb-input tb-frame"
-    :class="{ focused: isFocused, slim }"
+    :class="{ focused: isFocused }"
     v-click-outside="onInputBlur">
     <slot />
     <input
@@ -11,6 +11,13 @@
       @input="onInputChange"
       @focus="onInputFocus"
       :type="type">
+    <slot name="input-right" />
+    <div
+      v-if="showClearButton"
+      @click.stop="clearValue"
+      class="tb-input-clear-button">
+      <i class="fa fa-times-circle"></i>
+    </div>
     <div
       class="tb-frame-placeholder"
       :class="{ focused: isFocused, raised: placeholderRaised }">
@@ -29,7 +36,7 @@ export default {
     focused: t.bool.def(false),
     placeholder: t.string.def('Enter text'),
     raisePlaceholder: t.bool.def(false),
-    slim: t.bool.def(false),
+    showClearButton: t.bool.def(false),
     type: t.oneOf(['text', 'number', 'password']),
     value: t.string.def(''),
   },
@@ -63,6 +70,11 @@ export default {
       this.$emit('focus', false);
       this.inputFocused = false;
     },
+    clearValue() {
+      this.$emit('input', '');
+      this.$emit('cleared', true);
+      this.onInputBlur();
+    },
   },
 };
 </script>
@@ -78,11 +90,11 @@ export default {
       flex: 1;
     }
 
-    &.slim {
-      padding: 5px 10px;
-      input {
-        font-size: 14px;
-      }
+    &-clear-button {
+      color: $text-color-light;
+      cursor: pointer;
+      margin: -10px;
+      padding: 10px;
     }
   }
 </style>

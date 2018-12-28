@@ -7,7 +7,9 @@
       v-model="searchString"
       :placeholder="placeholder"
       :focused="open"
-      :raise-placeholder="valueNotNull">
+      :raise-placeholder="valueNotNull"
+      :show-clear-button="true"
+      @cleared="clearValue">
       <div v-if="singleValue && value">
         {{ value.value }}
       </div>
@@ -19,7 +21,7 @@
         <tb-list :items="listItems">
           <template slot-scope="{ item }">
             <tb-checkbox
-              v-if="showSelect"
+              v-if="showCheckboxes"
               :value="isSelected(item.option)"
               @input="() => onClickOption(item.option)"
             />
@@ -55,7 +57,7 @@ export default {
     hideSelected: t.bool.def(false),
     options: t.array,
     placeholder: t.string,
-    showSelect: t.bool.def(false),
+    showCheckboxes: t.bool.def(false),
     value: t.oneOfType([t.object, t.arrayOf(t.object)]),
   },
   components: {
@@ -161,6 +163,12 @@ export default {
         return this.value === option;
       }
       return this.getSelectedOptionIndex(option) > -1;
+    },
+    clearValue() {
+      if (this.isSingleValue) {
+        this.$emit('input', null);
+      }
+      this.$emit('input', []);
     },
   },
 };

@@ -5,20 +5,39 @@ import Select from './Select.vue';
 
 Vue.component('tb-select', Select);
 
+const storyData = {
+  singleSelect: [
+    { value: 'Andy' },
+    { value: 'Gary' },
+    { value: 'Aoife' },
+    { value: 'Chrissy' },
+    { value: 'Cooper' },
+  ],
+  multipleBasic: [
+    { value: 'Andy' },
+    { value: 'Gary' },
+    { value: 'Aoife' },
+    { value: 'Chrissy' },
+    { value: 'Cooper' },
+  ],
+  multipleWithChecboxes: [
+    { value: 'Andy' },
+    { value: 'Gary' },
+    { value: 'Aoife' },
+    { value: 'Chrissy' },
+    { value: 'Cooper' },
+  ],
+};
+
 storiesOf('Structures/Select', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Select },
     data: () => ({
-      value: [],
+      multipleBasicValue: [],
+      multipleWithCheckboxesValue: [],
       singleValue: {},
-      options: [
-        { value: 'Andy' },
-        { value: 'Gary' },
-        { value: 'Aoife' },
-        { value: 'Chrissy' },
-        { value: 'Cooper' },
-      ],
+      ...storyData,
     }),
     template: `
       <div>
@@ -26,7 +45,7 @@ storiesOf('Structures/Select', module)
           placeholder="Select single"
           v-model="singleValue"
           :single-value="true"
-          :options="options">
+          :options="singleSelect">
           <template slot-scope="{ option }">
             {{ option.value }}
           </template>
@@ -34,9 +53,19 @@ storiesOf('Structures/Select', module)
         <br>
         <tb-select
           placeholder="Select multiple"
-          v-model="value"
+          v-model="multipleBasicValue"
           :hideSelected="true"
-          :options="options">
+          :options="multipleBasic">
+          <template slot-scope="{ option }">
+            {{ option.value }}
+          </template>
+        </tb-select>
+        <br>
+        <tb-select
+          placeholder="Select multiple with checkboxes"
+          v-model="multipleWithCheckboxesValue"
+          :show-checkboxes="true"
+          :options="multipleWithChecboxes">
           <template slot-scope="{ option }">
             {{ option.value }}
           </template>

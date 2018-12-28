@@ -12,5 +12,14 @@ storiesOf('Blocks/Input', module)
     data: () => ({
       value: '',
     }),
-    template: '<tb-input v-model="value" />',
+    template: `
+      <div>
+        <tb-input v-model="value" />
+        <br>
+        <tb-input 
+          v-model="value"
+          placeholder="With clear button on right" 
+          :show-clear-button="true" />
+      </div>
+    `,
   }));

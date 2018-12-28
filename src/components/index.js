@@ -8,11 +8,13 @@ const components = {
   ...structures,
 };
 
-export default {
-  install: (Vue) => {
-    Object.keys(components)
-      .forEach((name) => {
-        Vue.component(name, components[name]);
-      });
-  },
-};
+// export default {
+//   install: (Vue) => {
+//     Object.keys(components)
+//       .forEach((name) => {
+//         Vue.component(name, components[name]);
+//       });
+//   },
+// };
+
+export default components;

@@ -11,6 +11,7 @@ module.exports = {
         data: `
           @import "@/styles/_main.scss";
           @import "@/styles/_variables.scss";
+          @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
         `,
       },
     },

@@ -8,7 +8,7 @@
       <transition name="tb-fade">
         <i
           v-if="value"
-          class="fa fa-check tb-absolute-center"></i>
+          class="fas fa-check tb-absolute-center"></i>
       </transition>
     </div>
     <div class="tb-checkbox-label">

@@ -2,9 +2,12 @@ $active-border: green;
 
 // box shading
 $box-shadow-standard: 1px 1px 3px 1px rgba(0,0,0,0.3);
+$box-shadow-light: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+$box-shadow-extra-light: 0px 0px 1px 0px rgba(0, 0, 0, 0.15);
 
 // Borders
 $border-radius-standard: 15px;
+$border-radius-light: 3px;
 
 // Transitions
 $standard-transition: all 0.2s ease;
@@ -24,3 +27,7 @@ $typography-primary-text-color: #555;
 
 // Dividers
 $divider-primary: $primary-color-dark;
+$divider-grey: #CCC;
+
+// Padding
+$padding-standard: 15px;

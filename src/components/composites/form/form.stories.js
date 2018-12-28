@@ -5,7 +5,7 @@ import Form from './Form.vue';
 
 Vue.component('tb-form', Form);
 
-storiesOf('Form', module)
+storiesOf('Composites/Form', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Form },
@@ -26,6 +26,7 @@ storiesOf('Form', module)
       <tb-input v-model="dob" placeholder="DOB"/>
       <template slot="actions">
         <tb-button :action="buttonAction" text="Click me!" />
+        <tb-button :action="buttonAction" type="primary" text="Submit" />
       </template>
     </tb-form>
     `,

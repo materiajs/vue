@@ -5,7 +5,7 @@ import Input from './Input.vue';
 
 Vue.component('tb-input', Input);
 
-storiesOf('Input', module)
+storiesOf('Blocks/Input', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Input },

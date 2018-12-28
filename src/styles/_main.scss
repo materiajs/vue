@@ -1,18 +1,64 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import './_variables';
 
-body, html, * {
+body, html {
   font-family: 'Roboto', sans-serif;
+}
+
+input {
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 16px;
 }
 
 .tb-frame {
   background: white;
   border: 1px solid #ccc;
   border-radius: $border-radius-standard;
+  min-height: 20px;
   padding: 15px;
+  position: relative;
   transition: $standard-transition;
 
   &.focused {
     border: 1px solid $primary-color-dark;
   }
+
+  &-placeholder {
+    border-radius: 50%;
+    color: $secondary-text-color;
+    margin: 0 -3px;
+    padding: 0 3px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: $standard-transition;
+    &.raised {
+      background: white;
+      top: 0;
+      font-size: 0.8em;
+    }
+    &.focused {
+      color: $primary-color-dark;
+    }
+  }
+}
+
+// Card
+.tb-card {
+  background: white;
+  border-radius: $border-radius-standard;
+  box-shadow: $box-shadow-standard;
+  padding: 15px;
+
+  &-light {
+    background: white;
+    border-radius: $border-radius-light;
+    box-shadow: $box-shadow-light;
+  }
+}
+
+.tb-padding-standard {
+  padding: $padding-standard;
 }

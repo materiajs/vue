@@ -5,16 +5,25 @@
       <tb-input v-model="age" placeholder="Age" type="number"/>
       <tb-input v-model="dob" placeholder="DOB"/>
       <template slot="actions">
-        <tb-button :action="buttonAction" text="Click me!" />
+        <tb-button :action="buttonAction" text="Cancel" />
+        <tb-button :action="buttonAction" type="primary" text="Submit" />
       </template>
+      <tb-select
+        placeholder="Select multiple"
+        v-model="selected"
+        :options="selectOptions">
+        <template slot-scope="{ option }">
+          {{ option.value }}
+        </template>
+      </tb-select>
     </tb-form>
   </div>
 </template>
 
 <script>
-import TbForm from './components/structures/form/Form.vue';
-import TbInput from './components/blocks/input/Input.vue';
-import TbButton from './components/blocks/button/Button.vue';
+import { TbInput, TbButton } from '@/components/blocks';
+import { TbForm } from '@/components/composites';
+import { TbSelect } from '@/components/structures';
 
 export default {
   name: 'app',
@@ -22,11 +31,20 @@ export default {
     name: '',
     age: '',
     dob: '',
+    selected: [],
   }),
   components: {
     TbForm,
     TbInput,
     TbButton,
+    TbSelect,
+  },
+  computed: {
+    selectOptions() {
+      return [
+        { value: 'Andy' },
+      ];
+    },
   },
   methods: {
     buttonAction() {

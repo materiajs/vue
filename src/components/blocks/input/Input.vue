@@ -1,18 +1,18 @@
 <template>
   <div
-    @click="onInputFocus"
+    @click="onClickInputWrapper"
     class="tb-input tb-frame"
-    :class="{ focused: inputFocused }">
+    :class="{ focused: inputFocused, slim }"
+    v-click-outside="onInputBlur">
+    <slot />
     <input
       ref="blox-input-ref"
       :value="value"
       @input="onInputChange"
       @focus="onInputFocus"
-      @blur="onInputBlur"
       :type="type">
     <div
-      @blur="onInputBlur"
-      class="tb-input-placeholder"
+      class="tb-frame-placeholder"
       :class="{ focused: inputFocused, raised: placeholderRaised }">
       {{ placeholder }}
     </div>
@@ -21,20 +21,26 @@
 
 <script>
 import t from 'vue-types';
+import { ClickOutside } from '@/directives';
 
 export default {
   name: 'tb-input',
   props: {
+    raisePlaceholder: t.bool.def(false),
     placeholder: t.string.def('Enter text'),
     type: t.oneOf(['text', 'number', 'password']),
+    slim: t.bool.def(false),
     value: t.string.def(''),
   },
   data: () => ({
     inputFocused: false,
   }),
+  directives: {
+    ClickOutside,
+  },
   computed: {
     placeholderRaised() {
-      return this.value.length > 0 || this.inputFocused;
+      return this.raisePlaceholder || this.value.length > 0 || this.inputFocused;
     },
   },
   methods: {
@@ -42,11 +48,15 @@ export default {
       const { value } = inputEvent.target;
       this.$emit('input', value);
     },
-    onInputFocus() {
+    onClickInputWrapper() {
       this.$refs['blox-input-ref'].focus();
+    },
+    onInputFocus() {
+      this.$emit('focus', true);
       this.inputFocused = true;
     },
     onInputBlur() {
+      this.$emit('focus', false);
       this.inputFocused = false;
     },
   },
@@ -57,29 +67,17 @@ export default {
   .tb-input {
     cursor: text;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
 
     input {
-      outline: none;
-      border: none;
-      width: 100%;
-      font-size: 16px;
+      flex: 1;
     }
-    &-placeholder {
-      border-radius: 50%;
-      color: $secondary-text-color;
-      margin: 0 -3px;
-      padding: 0 3px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: $standard-transition;
-      &.raised {
-        background: white;
-        top: 0;
-        font-size: 0.8em;
-      }
-      &.focused {
-        color: $primary-color-dark;
+
+    &.slim {
+      padding: 5px 10px;
+      input {
+        font-size: 14px;
       }
     }
   }

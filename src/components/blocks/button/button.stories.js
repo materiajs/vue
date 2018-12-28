@@ -5,12 +5,17 @@ import Button from './Button.vue';
 
 Vue.component('tb-button', Button);
 
-storiesOf('Button', module)
+storiesOf('Blocks/Button', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Button },
     data: () => ({
       value: '',
     }),
-    template: '<tb-button text="Button" />',
+    template: `
+      <div>
+        <tb-button text="Button" />
+        <tb-button text="Button" type="primary" />
+      </div>
+    `,
   }));

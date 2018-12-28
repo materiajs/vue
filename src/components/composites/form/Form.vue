@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-form">
+  <div class="tb-form tb-card">
     <slot name="header">
       <tb-divider v-if="title" :text="title" />
     </slot>
@@ -15,7 +15,7 @@
 
 <script>
 import t from 'vue-types';
-import TbDivider from '@/components/blocks/dividers/Divider.vue';
+import TbDivider from '@/components/blocks/form/FormDivider.vue';
 
 export default {
   name: 'Form',
@@ -35,11 +35,6 @@ export default {
 
 <style scoped lang="scss">
   .tb-form {
-    background: white;
-    border-radius: $border-radius-standard;
-    box-shadow: $box-shadow-standard;
-    padding: 15px;
-
     .actions {
       text-align: right;
     }
@@ -48,6 +43,11 @@ export default {
     }
     .tb-input {
       margin-bottom: 15px;
+    }
+    .actions {
+      .tb-button {
+        margin-left: 5px;
+      }
     }
   }
 </style>

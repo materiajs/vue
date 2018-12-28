@@ -1,8 +1,12 @@
 <template>
-  <button @click="action" class="tb-button">
-    <span>
+  <button
+    @click="action"
+    class="tb-button"
+    :class="[type]">
+    <span class="tb-button-text">
       {{ text }}
     </span>
+    <slot />
   </button>
 </template>
 
@@ -14,17 +18,15 @@ export default {
   props: {
     action: t.func,
     text: t.string,
+    type: t.oneOf(['basic', 'primary', 'cancel']).def('basic'),
   },
 };
 </script>
 
 <style scoped lang="scss">
   .tb-button {
-    background: $primary-color;
-    border-radius: $border-radius-standard;
+    border-radius: $border-radius-light;
     border: none;
-    box-shadow: $box-shadow-standard;
-    color: white;
     cursor: pointer;
     display: inline-block;
     font-size: 16px;
@@ -32,14 +34,20 @@ export default {
     padding: 10px 15px;
     transition: $standard-transition;
 
-    &:active {
-      box-shadow: none;
-      background: darken($primary-color, 5%);
+    &.primary {
+      background: $primary-color;
+      .tb-button-text {
+        color: white;
+      }
+      &:active {
+        background: darken($primary-color, 5%);
+      }
     }
-    &:focus{
-      border-color:transparent!important;
-      outline:none;
-      outline-style: none;
+    &:hover {
+      box-shadow: $box-shadow-light;
+    }
+    &:active {
+      box-shadow: $box-shadow-extra-light;
     }
   }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="tb-divider">
-    <div class="tb-divider-mini-divider" />
-    <div v-if="text" class="tb-divider-title">
+  <div class="tb-form-divider">
+    <div class="tb-form-divider-mini-divider"></div>
+    <div v-if="text" class="tb-form-divider-title">
       {{ text }}
     </div>
-    <div class="tb-divider-divider" />
+    <div class="tb-form-divider-divider"></div>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 import t from 'vue-types';
 
 export default {
-  name: 'tb-divider',
+  name: 'tb-form-divider',
   props: {
     text: t.string.def(''),
   },
@@ -20,10 +20,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-divider {
+  .tb-form-divider {
     align-items: center;
     color: $typography-primary-text-color;
     display: flex;
+    margin: 0 -15px;
     padding: 15px 0;
     &-title {
       color: $primary-color-dark;
@@ -31,14 +32,14 @@ export default {
       padding: 0 5px;
     }
     &-divider, &-mini-divider {
-      background: $divider-primary;
+      background: $divider-grey;
       height: 1px;
     }
     &-divider {
       flex: 1;
     }
     &-mini-divider {
-      width: 15px;
+      width: 25px;
     }
   }
 </style>

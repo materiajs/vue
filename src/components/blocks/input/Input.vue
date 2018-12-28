@@ -2,7 +2,7 @@
   <div
     @click="onClickInputWrapper"
     class="tb-input tb-frame"
-    :class="{ focused: inputFocused, slim }"
+    :class="{ focused: isFocused, slim }"
     v-click-outside="onInputBlur">
     <slot />
     <input
@@ -13,7 +13,7 @@
       :type="type">
     <div
       class="tb-frame-placeholder"
-      :class="{ focused: inputFocused, raised: placeholderRaised }">
+      :class="{ focused: isFocused, raised: placeholderRaised }">
       {{ placeholder }}
     </div>
   </div>
@@ -26,10 +26,11 @@ import { ClickOutside } from '@/directives';
 export default {
   name: 'tb-input',
   props: {
-    raisePlaceholder: t.bool.def(false),
+    focused: t.bool.def(false),
     placeholder: t.string.def('Enter text'),
-    type: t.oneOf(['text', 'number', 'password']),
+    raisePlaceholder: t.bool.def(false),
     slim: t.bool.def(false),
+    type: t.oneOf(['text', 'number', 'password']),
     value: t.string.def(''),
   },
   data: () => ({
@@ -39,6 +40,9 @@ export default {
     ClickOutside,
   },
   computed: {
+    isFocused() {
+      return this.focused || this.inputFocused;
+    },
     placeholderRaised() {
       return this.raisePlaceholder || this.value.length > 0 || this.inputFocused;
     },

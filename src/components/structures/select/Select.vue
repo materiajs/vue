@@ -6,15 +6,23 @@
     <tb-input
       v-model="searchString"
       :placeholder="placeholder"
-      :raise-placeholder="selectedItemsAsChips.length > 0"
-      @input="onChangeSearchText">
+      :focused="open"
+      :raise-placeholder="valueNotNull">
+      <div v-if="singleValue && value">
+        {{ value.value }}
+      </div>
       <tb-chip-list
-        v-if="selectedItemsAsChips.length" :chips="selectedItemsAsChips" />
+        v-else-if="selectedItemsAsChips.length" :chips="selectedItemsAsChips" />
     </tb-input>
     <div class="tb-select-action-box-wrapper">
       <tb-action-box :value="open">
         <tb-list :items="listItems">
           <template slot-scope="{ item }">
+            <tb-checkbox
+              v-if="showSelect"
+              :value="isSelected(item.option)"
+              @input="() => onClickOption(item.option)"
+            />
             <!--The slot passed to the list component can be defined by parent of Select.vue-->
             <slot v-bind:option="item.option">
               {{ item.option }}
@@ -22,9 +30,9 @@
           </template>
         </tb-list>
         <div
-          v-if="listItems.length === 0"
+          v-if="listItems.length === 0 && value.length === 0"
           class="tb-padding-standard">
-          No results
+          No results <i class="em em-disappointed_relieved"></i>
         </div>
       </tb-action-box>
     </div>
@@ -33,21 +41,26 @@
 
 <script>
 import t from 'vue-types';
+import isEmpty from 'lodash/isEmpty';
 import Fuse from 'fuse.js';
 import { ClickOutside } from '@/directives';
-import { TbInput, TbList } from '@/components/blocks';
+import { TbInput, TbList, TbCheckbox } from '@/components/blocks';
 import { TbActionBox, TbChipList } from '@/components/composites';
 
 export default {
   name: 'tb-select',
   props: {
+    singleValue: t.bool.def(false),
     fuseOptions: t.object,
-    placeholder: t.string,
+    hideSelected: t.bool.def(false),
     options: t.array,
-    value: t.arrayOf(t.object),
+    placeholder: t.string,
+    showSelect: t.bool.def(false),
+    value: t.oneOfType([t.object, t.arrayOf(t.object)]),
   },
   components: {
     TbActionBox,
+    TbCheckbox,
     TbChipList,
     TbList,
     TbInput,
@@ -64,21 +77,39 @@ export default {
     ClickOutside,
   },
   computed: {
+    isSingleValue() {
+      return this.singleValue === true;
+    },
+    valueNotNull() {
+      return !isEmpty(this.value);
+    },
     mergedFuseOptions() {
       return { ...this.baseFuseOptions, ...this.fuseOptions };
     },
     filteredOptions() {
-      if (!this.searchString) {
-        return this.options;
+      let { options } = this;
+      if (this.hideSelected) {
+        options = options.filter((option) => {
+          if (this.isSingleValue) {
+            return this.value !== option;
+          }
+          return this.value.indexOf(option) === -1;
+        });
       }
-      const fuse = new Fuse(this.options, this.mergedFuseOptions);
+      if (!this.searchString) {
+        return options;
+      }
+      const fuse = new Fuse(options, this.mergedFuseOptions);
       return fuse.search(this.searchString);
     },
     listItems() {
       return this.filteredOptions
-        .map(option => ({ option, onClick: () => this.selectOption(option) }));
+        .map(option => ({ option, onClick: () => this.onClickOption(option) }));
     },
     selectedItemsAsChips() {
+      if (this.singleValue) { // Dont have chips for singles
+        return [];
+      }
       return this.value.map(option => ({
         value: option.value,
         onRemove: () => this.deselectOption(option),
@@ -93,20 +124,30 @@ export default {
     onCloseSelect() {
       this.open = false;
     },
-    onChangeSearchText(val) {
-      console.debug(val); // TODO - Remove console output
-    },
     onInputFocus(val) {
       this.open = val;
     },
-    selectOption(option) {
-      if (this.getSelectedOptionIndex(option) === -1) {
-        const selectedOptions = [...this.value];
-        selectedOptions.push(option);
-        this.$emit('input', selectedOptions);
+    onClickOption(option) {
+      if (!this.isSelected(option)) {
+        this.selectOption(option);
+      } else {
+        this.deselectOption(option);
       }
     },
+    selectOption(option) {
+      if (this.isSingleValue) {
+        this.$emit('input', option);
+        return;
+      }
+      const selectedOptions = [...this.value];
+      selectedOptions.push(option);
+      this.$emit('input', selectedOptions);
+    },
     deselectOption(option) {
+      if (this.isSingleValue) {
+        this.$emit('input', null);
+        return;
+      }
       const { value } = this;
       const optionIndex = this.getSelectedOptionIndex(option);
       value.splice(optionIndex, 1);
@@ -114,6 +155,12 @@ export default {
     },
     getSelectedOptionIndex(option) {
       return this.value.indexOf(option);
+    },
+    isSelected(option) {
+      if (this.isSingleValue) {
+        return this.value === option;
+      }
+      return this.getSelectedOptionIndex(option) > -1;
     },
   },
 };

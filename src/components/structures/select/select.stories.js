@@ -11,6 +11,7 @@ storiesOf('Structures/Select', module)
     components: { Select },
     data: () => ({
       value: [],
+      singleValue: {},
       options: [
         { value: 'Andy' },
         { value: 'Gary' },
@@ -22,8 +23,19 @@ storiesOf('Structures/Select', module)
     template: `
       <div>
         <tb-select
+          placeholder="Select single"
+          v-model="singleValue"
+          :single-value="true"
+          :options="options">
+          <template slot-scope="{ option }">
+            {{ option.value }}
+          </template>
+        </tb-select>
+        <br>
+        <tb-select
           placeholder="Select multiple"
           v-model="value"
+          :hideSelected="true"
           :options="options">
           <template slot-scope="{ option }">
             {{ option.value }}

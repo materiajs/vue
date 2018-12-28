@@ -28,7 +28,10 @@ export default {
     }
     &-item {
       cursor: pointer;
-      padding: 15px;
+      display: flex;
+      align-items: center;
+      min-height: 45px;
+      padding: 0 15px;
       &:not(:last-child) {
         border-bottom: 1px solid $primary-color-light;
       }

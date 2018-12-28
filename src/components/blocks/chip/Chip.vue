@@ -65,7 +65,7 @@ export default {
     border-radius: $border-radius-standard;
     color: #fff;
     display: flex;
-    font-size: 13px;
+    font-size: 14px;
     overflow: hidden;
 
     span.chip-value {

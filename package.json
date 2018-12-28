@@ -1,10 +1,11 @@
 {
-  "name": "toolblox",
+  "name": "@toolblox/vue-components",
+  "main": "./dist/toolblox.common.js",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name toolblox ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook"
@@ -13,6 +14,7 @@
     "@storybook/addon-knobs": "^4.1.4",
     "@storybook/vue": "^4.1.0",
     "fuse.js": "^3.3.0",
+    "lodash": "^4.17.11",
     "storybook-addon-vue-info": "^0.7.0",
     "velocity-animate": "^1.5.2",
     "vue": "^2.5.17",
@@ -36,5 +38,12 @@
     "vue-cli-plugin-storybook": "^0.5.0",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ]
 }

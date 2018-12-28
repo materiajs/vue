@@ -62,3 +62,24 @@ input {
 .tb-padding-standard {
   padding: $padding-standard;
 }
+
+.tb-flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.tb-absolute-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Transitions && Animations
+.tb-fade-enter-active, .tb-fade-leave-active {
+  transition: opacity .3s;
+}
+.tb-fade-enter, .tb-fade-leave-to {
+  opacity: 0;
+}

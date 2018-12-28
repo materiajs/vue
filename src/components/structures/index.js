@@ -1,9 +1,1 @@
-import TbSelect from './select/Select.vue';
-
-export default {
-  TbSelect,
-};
-
-export {
-  TbSelect,
-};
+export { default as TbSelect } from './select/Select.vue';

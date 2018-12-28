@@ -1,6 +1,6 @@
 {
   "name": "@toolblox/vue-components",
-  "main": "./src/components/index.js",
+  "main": "./dist/toolblox.common.js",
   "version": "0.1.4",
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     buttonAction() {
-      alert('Clicked!');
+      console.debug('Clicked!');
     },
   },
 };

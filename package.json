@@ -19,6 +19,7 @@
     "storybook-addon-vue-info": "^0.7.0",
     "velocity-animate": "^1.5.2",
     "vue": "^2.5.17",
+    "vue-styled-components": "^1.4.3",
     "vue-types": "^1.3.4"
   },
   "devDependencies": {

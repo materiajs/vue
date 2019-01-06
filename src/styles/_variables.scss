@@ -4,6 +4,7 @@ $active-border: green;
 $box-shadow-standard: 1px 1px 3px 1px rgba(0,0,0,0.3);
 $box-shadow-light: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
 $box-shadow-extra-light: 0px 0px 1px 0px rgba(0, 0, 0, 0.15);
+$box-shadow-card: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
 
 // Borders
 $border-radius-standard: 15px;
@@ -26,6 +27,7 @@ $divider-color: #BDBDBD;
 // Colors
 // Text colors
 $text-color-light: #777;
+$color-grey-100: #EEE;
 
 // Typography
 $typography-primary-text-color: #555;

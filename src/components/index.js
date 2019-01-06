@@ -2,11 +2,13 @@ import Vue from 'vue';
 import * as blocks from './blocks';
 import * as composites from './composites';
 import * as structures from './structures';
+import * as styledComponents from './styled-components';
 
 const components = {
   ...blocks,
   ...composites,
   ...structures,
+  ...styledComponents,
 };
 
 Object.keys(components)
@@ -15,7 +17,3 @@ Object.keys(components)
   });
 
 export default components;
-
-// export * from './blocks';
-// export * from './composites';
-// export * from './structures';

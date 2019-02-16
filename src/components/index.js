@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import * as blocks from './blocks';
 import * as composites from './composites';
 import * as structures from './structures';
@@ -11,9 +10,11 @@ const components = {
   ...styledComponents,
 };
 
-Object.keys(components)
-  .forEach((name) => {
-    Vue.component(name, components[name]);
-  });
-
-export default components;
+export default {
+  install: (Vue => {
+    Object.keys(components)
+      .forEach((name) => {
+        Vue.component(name, components[name]);
+      });
+  },
+};

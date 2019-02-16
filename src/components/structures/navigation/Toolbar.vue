@@ -29,12 +29,6 @@ export default {
       color: white;
       box-shadow: $box-shadow-card;
       background: $primary-color-dark;
-      .tb-nav-link {
-        background: $primary-color-dark;
-        /deep/:before {
-          background: $primary-color-dark;
-        }
-      }
     }
   }
 </style>

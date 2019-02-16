@@ -1,13 +1,14 @@
 <template>
   <div class="tb-form tb-card">
     <slot name="header">
-      <tb-divider v-if="title" :text="title" />
+      <tb-divider>Heya</tb-divider>
+      <tb-form-divider v-if="title" :text="title" />
     </slot>
     <slot />
     <div
       v-if="showActions"
       class="actions">
-      <tb-divider />
+      <tb-form-divider />
       <slot name="actions"></slot>
     </div>
   </div>
@@ -15,12 +16,14 @@
 
 <script>
 import t from 'vue-types';
-import TbDivider from '@/components/blocks/form/FormDivider.vue';
+import TbFormDivider from '@/components/blocks/form/FormDivider.vue';
+import TbDivider from '@/components/blocks/layout/Divider.vue';
 
 export default {
   name: 'Form',
   components: {
     TbDivider,
+    TbFormDivider,
   },
   props: {
     title: t.string,

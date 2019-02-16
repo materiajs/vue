@@ -1,8 +1,10 @@
 <template>
-  <div class="tb-nav-link tb-flex-center">
+  <div
+    :class="{ dark }"
+    class="tb-nav-link tb-flex-center">
     <div class="tb-nav-link-content">
       <slot>
-        Nav Link
+        Nav Linkd
       </slot>
     </div>
   </div>
@@ -11,6 +13,11 @@
 <script>
 export default {
   name: 'NavLink',
+  computed: {
+    dark() {
+      return this.$parent.dark;
+    },
+  },
 };
 </script>
 
@@ -23,7 +30,7 @@ export default {
     text-align: center;
 
     &:before {
-      background: white;
+      background: rgba(0,0,0,0);
       content: "";
       position: absolute;
       top: 0;
@@ -34,10 +41,14 @@ export default {
     }
     &:hover {
       &:before {
-        filter: brightness(90%);
+        background: rgba(0,0,0,0.1);
       }
     }
-
+    &.dark:hover {
+      &:before {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
     &-content {
       z-index: 10;
     }

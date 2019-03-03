@@ -1,37 +1,19 @@
 <template>
-  <div class="tb-form tb-card">
-    <slot name="header">
-      <tb-divider>Heya</tb-divider>
-      <tb-form-divider v-if="title" :text="title" />
-    </slot>
+  <div class="tb-form tb-card" :style="getDarkElementStyle">
     <slot />
-    <div
-      v-if="showActions"
-      class="actions">
-      <tb-form-divider />
-      <slot name="actions"></slot>
-    </div>
   </div>
 </template>
 
 <script>
-import t from 'vue-types';
-import TbFormDivider from '@/components/blocks/form/FormDivider.vue';
-import TbDivider from '@/components/blocks/layout/Divider.vue';
+import themeable, { defaultAccentColor } from '@/mixins/themeable';
 
 export default {
   name: 'Form',
-  components: {
-    TbDivider,
-    TbFormDivider,
-  },
+  mixins: [
+    themeable,
+  ],
   props: {
-    title: t.string,
-  },
-  computed: {
-    showActions() {
-      return this.$slots.actions !== undefined;
-    },
+    darkColor: defaultAccentColor,
   },
 };
 </script>
@@ -44,7 +26,7 @@ export default {
     .tb-divider {
       margin-bottom: 5px;
     }
-    .tb-input {
+    .tb-input, tb-select, .tb-toolbar {
       margin-bottom: 15px;
     }
     .actions {

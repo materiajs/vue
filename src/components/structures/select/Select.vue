@@ -8,7 +8,7 @@
       :placeholder="placeholder"
       :focused="open"
       :raise-placeholder="valueNotNull"
-      :show-clear-button="true"
+      :show-clear-button="!isSingleValue"
       @cleared="clearValue">
       <div v-if="singleValue && value">
         {{ value.value }}
@@ -52,6 +52,7 @@ import { TbActionBox, TbChipList } from '@/components/composites';
 export default {
   name: 'tb-select',
   props: {
+    closeOnSelect: t.bool.def(false),
     singleValue: t.bool.def(false),
     fuseOptions: t.object,
     hideSelected: t.bool.def(false),
@@ -137,6 +138,11 @@ export default {
       }
     },
     selectOption(option) {
+      if (this.closeOnSelect) {
+        setTimeout(() => {
+          this.onCloseSelect();
+        }, 10);
+      }
       if (this.isSingleValue) {
         this.$emit('input', option);
         return;
@@ -177,6 +183,7 @@ export default {
 <style scoped lang="scss">
   .tb-select {
     cursor: text;
+    margin-bottom: 15px;
 
     .tb-chip-list {
       margin: -5px 0;

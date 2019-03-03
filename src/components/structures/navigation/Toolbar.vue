@@ -1,18 +1,25 @@
 <template>
   <div
     class="tb-toolbar"
-    :class="{ dark }">
+    :class="[shadow ? 'shadow' : '', size]"
+    :style="getElementStyle">
     <slot />
   </div>
 </template>
 
 <script>
 import t from 'vue-types';
+import themeable, { defaultPrimaryColor } from '@/mixins/themeable';
 
 export default {
   name: 'toolbar',
+  mixins: [
+    themeable,
+  ],
   props: {
-    dark: t.bool.def(false),
+    color: defaultPrimaryColor,
+    shadow: t.bool.def(true),
+    size: t.oneOf(['small', 'large']),
   },
 };
 </script>
@@ -24,11 +31,17 @@ export default {
     display: flex;
     height: 60px;
     align-items: center;
+    color: white;
 
-    &.dark {
-      color: white;
-      box-shadow: $box-shadow-card;
-      background: $primary-color-dark;
+    &.small {
+      height: 45px;
+    }
+    &.large {
+      height: 75px;
+    }
+    &.shadow {
+      box-shadow: $box-shadow-heavy;
+      z-index: 10;
     }
   }
 </style>

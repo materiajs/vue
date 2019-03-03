@@ -15,6 +15,7 @@ storiesOf('Composites/Action Box', module)
     data: () => ({
       open1: false,
       open2: false,
+      open3: false,
       wrapperStyle: {
         'border-radius': '15px',
         position: 'relative',
@@ -53,6 +54,18 @@ storiesOf('Composites/Action Box', module)
           Click me - {{ open2.toString() }} 
           <tb-action-box position="bottom-right" v-model="open2">
             <div @click.stop="() => open2 = false" style="padding: 15px">
+              Position bottom right - click here to close
+            </div>
+          </tb-action-box>
+        </div>
+        <div
+          :style="wrapperStyle"
+          @mouseover="() => open3 = true"
+          @mouseleave="() => open3 = false"
+          >
+          Hover me
+          <tb-action-box v-model="open3">
+            <div style="padding: 15px">
               Position bottom right - click here to close
             </div>
           </tb-action-box>

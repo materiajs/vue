@@ -3,14 +3,24 @@
     @click="onClickInputWrapper"
     class="tb-input tb-frame"
     :class="{ focused: isFocused }"
+    :style="wrapperStyle"
     v-click-outside="onInputBlur">
     <slot />
     <input
+      v-if="type !== 'textarea'"
+      ref="blox-input-ref"
+      :value="value"
+      :style="getDarkElementStyle"
+      :type="type"
+      @input="onInputChange"
+      @focus="onInputFocus">
+    <textarea
+      v-else
       ref="blox-input-ref"
       :value="value"
       @input="onInputChange"
       @focus="onInputFocus"
-      :type="type">
+    />
     <slot name="input-right" />
     <div
       v-if="showClearButton"
@@ -20,7 +30,9 @@
     </div>
     <div
       class="tb-frame-placeholder"
-      :class="{ focused: isFocused, raised: placeholderRaised }">
+      :class="{ focused: isFocused, raised: placeholderRaised }"
+      :style="getDarkElementStyle"
+    >
       {{ placeholder }}
     </div>
   </div>
@@ -29,15 +41,20 @@
 <script>
 import t from 'vue-types';
 import { ClickOutside } from '@/directives';
+import themeable, { defaultAccentColor } from '@/mixins/themeable';
 
 export default {
   name: 'tb-input',
+  mixins: [
+    themeable,
+  ],
   props: {
+    darkColor: defaultAccentColor,
     focused: t.bool.def(false),
     placeholder: t.string.def('Enter text'),
     raisePlaceholder: t.bool.def(false),
     showClearButton: t.bool.def(false),
-    type: t.oneOf(['text', 'number', 'password']),
+    type: t.oneOf(['text', 'number', 'password', 'textarea']),
     value: t.string.def(''),
   },
   data: () => ({
@@ -53,6 +70,9 @@ export default {
     placeholderRaised() {
       return this.raisePlaceholder || this.value.length > 0 || this.inputFocused;
     },
+    wrapperStyle() {
+      return { ...this.getDarkElementStyle };
+    },
   },
   methods: {
     onInputChange(inputEvent) {
@@ -67,8 +87,10 @@ export default {
       this.inputFocused = true;
     },
     onInputBlur() {
-      this.$emit('focus', false);
-      this.inputFocused = false;
+      if (this.inputFocused) {
+        this.$emit('focus', false);
+        this.inputFocused = false;
+      }
     },
     clearValue() {
       this.$emit('input', '');
@@ -88,6 +110,13 @@ export default {
 
     input {
       flex: 1;
+    }
+    textarea {
+      border: none;
+      resize: vertical;
+      outline: none;
+      flex: 1;
+      height: 200px;
     }
 
     &-clear-button {

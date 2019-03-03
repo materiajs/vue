@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import './_variables';
 
 body, html {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 input {
@@ -19,21 +19,23 @@ input {
   min-height: 20px;
   padding: 15px;
   position: relative;
-  transition: $standard-transition;
+  transition: border $standard-transition-timing $standard-transition-easing;
 
   &.focused {
     border: 1px solid $primary-color-dark;
   }
 
   &-placeholder {
-    border-radius: 50%;
+    border-radius: 15px;
     color: $secondary-text-color;
     margin: 0 -3px;
     padding: 0 3px;
     position: absolute;
-    top: 50%;
+    top: 25px;
     transform: translateY(-50%);
-    transition: $standard-transition;
+    transition: top $standard-transition-t-e, font-size $standard-transition-t-e;
+    user-select: none;
+
     &.raised {
       background: white;
       top: 0;

@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="$emit('click')"
     :class="{ dark }"
     class="tb-nav-link tb-flex-center">
     <div class="tb-nav-link-content">
@@ -28,6 +29,7 @@ export default {
     padding: 0 15px;
     position: relative;
     text-align: center;
+    user-select: none;
 
     &:before {
       background: rgba(0,0,0,0);

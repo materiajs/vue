@@ -22,12 +22,10 @@ export default {
 <style scoped lang="scss">
   .tb-form-divider {
     align-items: center;
-    color: $typography-primary-text-color;
     display: flex;
     margin: 0 -15px;
     padding: 15px 0;
     &-title {
-      color: $primary-color-dark;
       font-size: 20px;
       padding: 0 5px;
     }

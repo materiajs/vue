@@ -3,39 +3,37 @@
     @click="onClickSelect"
     v-click-outside="onCloseSelect"
     class="tb-select">
-    <tb-input
-      v-model="searchString"
-      :placeholder="placeholder"
-      :focused="open"
-      :raise-placeholder="valueNotNull"
-      :show-clear-button="!isSingleValue"
-      @cleared="clearValue">
-      <div v-if="singleValue && value">
-        {{ value.value }}
-      </div>
-      <tb-chip-list
-        v-else-if="selectedItemsAsChips.length" :chips="selectedItemsAsChips" />
-    </tb-input>
+    <slot name="trigger">
+      <tb-input
+        v-model="searchString"
+        :placeholder="placeholder"
+        :focused="open"
+        :raise-placeholder="valueNotNull"
+        :show-clear-button="!isSingleValue"
+        @cleared="clearValue">
+        <div v-if="singleValue && value">
+          {{ value.value }}
+        </div>
+        <tb-chip-list
+          v-else-if="selectedItemsAsChips.length" :chips="selectedItemsAsChips" />
+      </tb-input>
+    </slot>
     <div class="tb-select-action-box-wrapper">
-      <tb-action-box :value="open">
+      <tb-action-box :position="position" :value="open">
         <tb-list :items="listItems">
-          <template slot-scope="{ item }">
+          <template slot="item" slot-scope="{ item }">
             <tb-checkbox
               v-if="showCheckboxes"
               :value="isSelected(item.option)"
               @input="() => onClickOption(item.option)"
             />
             <!--The slot passed to the list component can be defined by parent of Select.vue-->
-            <slot v-bind:option="item.option">
-              {{ item.option }}
+            <slot name="item" v-bind:option="item.option">
+              {{ item.option.value }}
             </slot>
           </template>
+          <slot />
         </tb-list>
-        <div
-          v-if="listItems.length === 0 && value.length === 0"
-          class="tb-padding-standard">
-          No results <i class="em em-disappointed_relieved"></i>
-        </div>
       </tb-action-box>
     </div>
   </div>
@@ -46,11 +44,15 @@ import t from 'vue-types';
 import isEmpty from 'lodash/isEmpty';
 import Fuse from 'fuse.js';
 import { ClickOutside } from '@/directives';
+import themeable from '@/mixins/themeable';
 import { TbInput, TbList, TbCheckbox } from '@/components/blocks';
 import { TbActionBox, TbChipList } from '@/components/composites';
 
 export default {
   name: 'tb-select',
+  mixins: [
+    themeable,
+  ],
   props: {
     closeOnSelect: t.bool.def(false),
     singleValue: t.bool.def(false),
@@ -60,6 +62,7 @@ export default {
     placeholder: t.string,
     showCheckboxes: t.bool.def(false),
     value: t.oneOfType([t.object, t.arrayOf(t.object)]),
+    position: t.string.def('bottom-left'),
   },
   components: {
     TbActionBox,
@@ -113,11 +116,11 @@ export default {
       if (this.singleValue) { // Dont have chips for singles
         return [];
       }
-      return this.value.map(option => ({
+      return this.value ? this.value.map(option => ({
         value: option.value,
         onRemove: () => this.deselectOption(option),
         closeable: true,
-      }));
+      })) : [];
     },
   },
   methods: {
@@ -183,7 +186,6 @@ export default {
 <style scoped lang="scss">
   .tb-select {
     cursor: text;
-    margin-bottom: 15px;
 
     .tb-chip-list {
       margin: -5px 0;

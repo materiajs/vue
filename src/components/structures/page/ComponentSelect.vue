@@ -3,29 +3,34 @@
     :value="[]"
     :single-value="true"
     :close-on-select="true"
-    @input="component => $emit('select', component)"
+    @input="onSelect"
+    position="bottom-right"
     placeholder="Add component to layout"
     :options="components"
   >
-    <template slot-scope="{ option }">
-      {{ option.title }}
-    </template>
+    <div slot="item" slot-scope="{ option }">
+      {{ option.name }}
+    </div>
+    <tb-fa
+      slot="trigger"
+      icon="plus" />
   </tb-select>
 </template>
 
 <script>
-import { TbInput } from '@/components/blocks';
-import FlexLayoutBuilder from './FlexLayoutBuilder.vue';
+import { cloneDeep } from 'lodash';
+import { components } from '.';
 
 export default {
   name: 'ComponentSelect',
   data: () => ({
-    components: [
-      { component: TbInput, title: 'TbInput Text area', props: { type: 'textarea' } },
-      { component: TbInput, title: 'TbInput' },
-      { component: FlexLayoutBuilder, title: 'Flex builder layout', children: [] },
-    ],
+    components,
   }),
+  methods: {
+    onSelect(component) {
+      this.$emit('select', cloneDeep(component));
+    },
+  },
 };
 </script>
 

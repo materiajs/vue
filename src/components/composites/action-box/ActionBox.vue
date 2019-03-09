@@ -16,16 +16,12 @@
 <script>
 import t from 'vue-types';
 import { ClickOutside } from '@/directives';
-import { TbTransition } from '@/components/blocks';
 
 export default {
   name: 'tb-action-box',
   props: {
     position: t.oneOf(['bottom-left', 'bottom-right']).def('bottom-left'),
     value: t.bool.def(false),
-  },
-  components: {
-    TbTransition,
   },
   directives: {
     ClickOutside,

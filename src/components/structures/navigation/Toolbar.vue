@@ -19,7 +19,7 @@ export default {
   props: {
     color: defaultPrimaryColor,
     shadow: t.bool.def(true),
-    size: t.oneOf(['small', 'large']),
+    size: t.oneOf(['xs', 'small', 'large']),
   },
 };
 </script>
@@ -32,7 +32,10 @@ export default {
     height: 60px;
     align-items: center;
     color: white;
-
+    &.xs {
+      height: 40px;
+      font-size: 15px;
+    }
     &.small {
       height: 45px;
     }

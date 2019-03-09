@@ -45,20 +45,13 @@ storiesOf('Structures/Select', module)
           placeholder="Select single"
           v-model="singleValue"
           :single-value="true"
-          :options="singleSelect">
-          <template slot-scope="{ option }">
-            {{ option.value }}
-          </template>
-        </tb-select>
+          :options="singleSelect" />
         <br>
         <tb-select
           placeholder="Select multiple"
           v-model="multipleBasicValue"
           :hideSelected="true"
           :options="multipleBasic">
-          <template slot-scope="{ option }">
-            {{ option.value }}
-          </template>
         </tb-select>
         <br>
         <tb-select
@@ -66,8 +59,17 @@ storiesOf('Structures/Select', module)
           v-model="multipleWithCheckboxesValue"
           :show-checkboxes="true"
           :options="multipleWithChecboxes">
-          <template slot-scope="{ option }">
-            {{ option.value }}
+        </tb-select>
+        <tb-select
+          placeholder="Select multiple with checkboxes"
+          :single-value="true"
+          :close-on-select="true"
+          :options="singleSelect">
+          <template slot="trigger">
+            <tb-button>Trigger slot</tb-button>
+          </template>
+          <template slot="item" slot-scope="{ option }">
+            Item: {{ option.value }}
           </template>
         </tb-select>
       </div>

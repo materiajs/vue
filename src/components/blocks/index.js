@@ -19,3 +19,6 @@ export { default as TbGridLayout } from './layout/GridLayout.vue';
 // Form
 export { default as TbFormHeader } from './form/FormHeader.vue';
 export { default as TbFormDivider } from './form/FormDivider.vue';
+
+// Typography
+export { default as TbTitle } from './typography/Title.vue';

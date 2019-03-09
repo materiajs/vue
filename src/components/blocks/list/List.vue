@@ -1,20 +1,26 @@
 <template>
-  <div class="tb-list">
-    <div
-      v-for="(item, key) in items"
-      :key="key"
-      @click="item.onClick"
-      class="tb-list-item" >
-      <slot v-bind:item="item" />
-    </div>
+  <div class="tb-list" :style="getElementStyle">
+    <slot>
+      <div
+        v-for="(item, key) in items"
+        :key="key"
+        @click="item.onClick"
+        class="tb-list-item" >
+        <slot name="item" v-bind:item="item" />
+      </div>
+    </slot>
   </div>
 </template>
 
 <script>
 import t from 'vue-types';
+import themeable from '@/mixins/themeable';
 
 export default {
   name: 'List',
+  mixins: [
+    themeable,
+  ],
   props: {
     items: t.array,
   },
@@ -26,7 +32,7 @@ export default {
     &-search-box {
       padding: 5px;
     }
-    &-item {
+    >* {
       cursor: pointer;
       display: flex;
       align-items: center;

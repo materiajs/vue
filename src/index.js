@@ -3,6 +3,7 @@ import * as composites from './components/composites/index';
 import * as structures from './components/structures/index';
 import * as styledComponents from './components/styled-components/index';
 import { ClickOutside } from './directives';
+import './components/structures/page/store';
 
 const components = {
   ...blocks,

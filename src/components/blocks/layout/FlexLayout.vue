@@ -1,5 +1,8 @@
 <template>
-  <div class="tb-flex-layout" :style="{ 'align-items': alignItems }">
+  <div
+    class="tb-flex-layout"
+    :class="[flexDirection]"
+   :style="{ 'align-items': alignItems, 'flex-direction': flexDirection }">
     <slot />
   </div>
 </template>
@@ -11,6 +14,7 @@ export default {
   name: 'Layout',
   props: {
     alignItems: t.string,
+    flexDirection: t.oneOf(['row', 'column']).def('row'),
   },
 };
 </script>
@@ -19,10 +23,18 @@ export default {
   .tb-flex-layout {
     display: flex;
     justify-content: space-evenly;
-    margin: 0 -5px;
 
-    >* {
-      margin: 0 5px;
+    &.row {
+      margin: 0 -5px;
+      >* {
+        margin: 0 5px;
+      }
+    }
+    &.column {
+      margin: -5px 0;
+      >* {
+        margin: 5px 0;
+      }
     }
   }
 </style>

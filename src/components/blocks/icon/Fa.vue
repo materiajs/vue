@@ -3,6 +3,7 @@
     @click="action"
     class="tb-fa-wrapper"
     :class="{ 'has-action': action !== undefined }"
+    :style="{ transform: `rotate(${rotate}deg)` }"
   >
     <i class="fa tb-fa" :class="[`fa-${icon}`, size]"></i>
     <slot />
@@ -18,6 +19,7 @@ export default {
     action: t.func,
     icon: t.string,
     size: t.oneOf(['small', 'large', 'extra-large']),
+    rotate: t.number.def(0),
   },
 };
 </script>
@@ -29,6 +31,7 @@ export default {
     text-align: center;
     &-wrapper {
       position: relative;
+      transition: $standard-transition;
       &.has-action {
         cursor: pointer;
       }

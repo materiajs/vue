@@ -33,6 +33,7 @@
       :class="{ focused: isFocused, raised: placeholderRaised }"
       :style="getDarkElementStyle"
     >
+      <div class="tb-frame-placeholder-bg"></div>
       {{ placeholder }}
     </div>
   </div>
@@ -68,7 +69,7 @@ export default {
       return this.focused || this.inputFocused;
     },
     placeholderRaised() {
-      return this.raisePlaceholder || this.value.length > 0 || this.inputFocused;
+      return this.raisePlaceholder || (this.value && this.value.length > 0) || this.inputFocused;
     },
     wrapperStyle() {
       return { ...this.getDarkElementStyle };

@@ -2,6 +2,7 @@
 import { configure } from '@storybook/vue';
 import Vue from 'vue';
 import toolblox from '@/';
+import Vuex from 'vuex';
 
 function loadStories() {
   const options = {
@@ -9,7 +10,7 @@ function loadStories() {
       colors: {},
     },
   };
-
+  Vue.use(Vuex);
   Vue.use(toolblox, options);
   const req = require.context('@/components/', true, /\.stories\.js$/);
   req.keys()

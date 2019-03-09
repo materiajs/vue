@@ -12,11 +12,10 @@
       {{ value }}
     </span>
     <span
+      v-if="closeable"
       @click.stop="onRemove"
       class="chip-close-area">
-      <i
-        v-if="closeable"
-        class="fa fa-times close-icon"></i>
+      <i class="fa fa-times close-icon"></i>
     </span>
   </div>
 </template>

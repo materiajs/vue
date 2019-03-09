@@ -1,61 +1,63 @@
 <template>
-  <div class="tb-flex-layout-builder">
-    <tb-padding padding="0 0 15px">
-      <tb-toolbar color="accent" :shadow="false">
+  <div class="tb-flex-layout-builder" :class="{ 'tb-frame builder': editMode }">
+    <template v-if="editMode">
+      <builder-toolbar :id="id">
         Flex layout
         <tb-spacer />
-        <tb-fa icon="plus-circle" size="large" :action="addEmptyChild" />
-      </tb-toolbar>
-    </tb-padding>
-    <tb-flex-layout>
-      <tb-flex-item
-        v-for="(child, key) in value"
-        :key="key"
-      >
-        <component
-          v-if="child"
-          :is="child.component"
-          v-bind="child.props"
-          v-model="child.children"
-        />
-        <div v-else>
-          <component-select @select="component => updateChildren(component, key)" />
-        </div>
-      </tb-flex-item>
-      <tb-flex-item v-if="!value.length">
-        <component-select @select="component => updateChildren(component, 0)" />
-      </tb-flex-item>
+        <tb-fa
+          :action="onClickLayoutDirection"
+          icon="bars"
+          :rotate="(flexDirection === 'row' ? 90 : 0)"></tb-fa>
+      </builder-toolbar>
+    </template>
+    <tb-flex-layout
+      v-for="(undefined, repeatKey) in (editMode ? [1] : getRepeat)"
+      :key="repeatKey"
+      :flex-direction="flexDirection">
+      <template v-for="(child, key) in getChildren">
+        <component-builder
+          :array-bind="getArrayBind"
+          :id="child"
+          :repeat-index="repeatKey"
+          :repeat-on="component.repeat"
+          :key="`${child}-${key}${repeatKey}`"/>
+      </template>
     </tb-flex-layout>
   </div>
 </template>
 
 <script>
-import t from 'vue-types';
+import ComponentBuilder from './ComponentBuilder.vue';
+import { builder } from '@/mixins';
+import page from '.';
+import BuilderToolbar from './BuilderToolbar.vue';
 
 export default {
   name: 'FlexLayoutBuilder',
-  props: {
-    update: t.func,
-    value: t.array,
-  },
+  mixins: [
+    builder,
+  ],
+  data: () => ({
+    flexDirection: 'row',
+    page,
+  }),
   components: {
-    ComponentSelect: () => import('./ComponentSelect.vue'),
+    BuilderToolbar,
+    ComponentBuilder,
   },
   methods: {
-    addEmptyChild() {
-      const value = [...this.value];
-      value.push(null);
-      this.$emit('input', value);
+    onClickAdd() {
+      this.addEmptyChild('tb-flex-item');
     },
-    updateChildren(component, index) {
-      const value = [...this.value];
-      value.splice(index, 1, component);
-      this.$emit('input', value);
+    onClickLayoutDirection() {
+      this.flexDirection = this.flexDirection === 'row' ? 'column' : 'row';
     },
   },
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .tb-flex-layout >* {
+    flex: 1;
+  }
 </style>

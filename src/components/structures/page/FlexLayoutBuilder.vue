@@ -10,17 +10,18 @@
           :rotate="(flexDirection === 'row' ? 90 : 0)"></tb-fa>
       </builder-toolbar>
     </template>
-    <tb-flex-layout
-      v-for="(undefined, repeatKey) in (editMode ? [1] : getRepeat)"
-      :key="repeatKey"
-      :flex-direction="flexDirection">
+    <tb-flex-layout :flex-direction="flexDirection">
       <template v-for="(child, key) in getChildren">
-        <component-builder
-          :array-bind="getArrayBind"
-          :id="child"
-          :repeat-index="repeatKey"
-          :repeat-on="component.repeat"
-          :key="`${child}-${key}${repeatKey}`"/>
+        <template v-for="(undefined, childRepeat) in (editMode ? [0] : getRepeatById(child))">
+          <component
+            :is="getPageComponentByComponentId(getComponentById(child).componentId)"
+            :id="child"
+            :array-bind="getArrayBind"
+            :edit-mode="editMode"
+            :repeat-index="childRepeat"
+            :key="`${key}${childRepeat}`"
+          />
+        </template>
       </template>
     </tb-flex-layout>
   </div>

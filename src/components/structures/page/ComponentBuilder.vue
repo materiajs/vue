@@ -1,12 +1,13 @@
 <template>
- <component
-   :is="getComponent"
-   :id="id"
-   :array-bind="getArrayBindWithRepeat()"
-   v-bind="component.props"
-   :edit-mode="editMode"
-   :repeat-index="repeatIndex"
- />
+ <div>
+   <component
+     :is="getComponent"
+     :id="id"
+     :array-bind="getArrayBindWithRepeat()"
+     v-bind="component.props"
+     :edit-mode="editMode"
+   />
+ </div>
 </template>
 
 <script>
@@ -20,16 +21,17 @@ export default {
     builder,
   ],
   props: {
-    repeatOn: t.string,
     repeatIndex: t.any,
   },
   methods: {
     getArrayBindWithRepeat() {
-      const res = cloneDeep(this.getArrayBind);
-      if (this.repeatOn) {
-        res[this.repeatOn].index = this.repeatIndex;
+      if (this.component.repeat) {
+        const res = cloneDeep(this.getArrayBind);
+        res[this.component.repeat].index = this.repeatIndex;
+        console.debug('RES C ', res); // TODO - Remove console output
+        return res;
       }
-      return res;
+      return cloneDeep(this.getArrayBind);
     },
   },
 };

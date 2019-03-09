@@ -13,12 +13,16 @@
       </tb-toolbar>
     </tb-margin>
     <template v-for="(child, key) in getChildren">
-      <tb-padding :key="key" padding="0 0 15px">
-        <component-builder
-          position="bottom-right"
+      <template v-for="(undefined, childRepeat) in (editMode ? [0] : getRepeatById(child))">
+        <component
+          :is="getPageComponentByComponentId(getComponentById(child).componentId)"
           :id="child"
-          :key="key"/>
-      </tb-padding>
+          :array-bind="getArrayBind"
+          :edit-mode="editMode"
+          :repeat-index="childRepeat"
+          :key="`${key}${childRepeat}`"
+        />
+      </template>
     </template>
     <pre>
       <code>

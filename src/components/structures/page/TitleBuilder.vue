@@ -12,14 +12,10 @@
         <tb-input v-else :value="value.value" @input="inputVal => { value = { value: inputVal }; }" />
       </tb-padding>
     </template>
-    <template
+    <tb-title
       v-else
-      v-for="(undefined, key) in (editMode ? [0] : getRepeat)">
-      <tb-title
-        :key="key"
-        size="large"
-        :value="getValue(key)"></tb-title>
-    </template>
+      size="large"
+      :value="titleValue"></tb-title>
   </div>
 </template>
 
@@ -39,20 +35,9 @@ export default {
     titleValue() {
       if (this.isValueDynamic) {
         if (this.value.type === 'array') {
+          console.debug(this.getArrayBind); // TODO - Remove console output
           const [key, prop] = this.value.value.split('.');
-          return this.dataArrays[key][this.repeatIndex][prop];
-        }
-        return this.pageData[this.value.value].toString();
-      }
-      return this.component.getValue(this.component);
-    },
-  },
-  methods: {
-    getValue(repeatIndex) {
-      if (this.isValueDynamic) {
-        if (this.value.type === 'array') {
-          const [key, prop] = this.value.value.split('.');
-          const index = this.getArrayBind[key].index || repeatIndex;
+          const index = this.getArrayBind[key].index;
           return this.dataArrays[key][index][prop];
         }
         return this.pageData[this.value.value].toString();

@@ -92,7 +92,7 @@ export default {
         ...(this.component.repeat
           ? {
             [this.component.repeat]:
-              { key: this.component.repeat },
+              { key: this.component.repeat, index: this.repeatIndex },
           } : {}),
       };
       return res;
@@ -148,6 +148,16 @@ export default {
     },
     onSetRepeat(repeat) {
       this.setRepeat({ id: this.id, repeat });
+    },
+    getRepeatById(id) {
+      const component = this.getComponentById(id);
+      if (component.repeat) {
+        return new Array(this.dataArrays[component.repeat].length);
+      }
+      return 1;
+    },
+    getPageComponentByComponentId(componentId) {
+      return this.page.getComponent(componentId);
     },
   },
   watch: {

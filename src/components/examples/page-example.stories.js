@@ -14,18 +14,18 @@ storiesOf('Examples/Page example', module)
     }),
     template: `
       <div>
-        <tb-toolbar type="primary" :dark="dark">
-        Storybook
-        <tb-spacer />
-        <tb-nav-link>
-          <div @click="() => dark = !dark">
-            Toggle dark
-          </div>
-        </tb-nav-link>
-      </tb-toolbar>
-      <tb-page-layout :dark="dark" dark-color="primary-light">
-        <page-builder :dark="dark" />
-      </tb-page-layout>
-    </div>
+        <tb-toolbar type="primary" :dark="dark" position="sticky" top="0">
+          Page builder
+          <tb-spacer />
+          <tb-nav-link>
+            <div @click="() => dark = !dark">
+              Toggle dark
+            </div>
+          </tb-nav-link>
+        </tb-toolbar>
+        <tb-page-layout :dark="dark" dark-color="primary-light">
+          <page-builder :dark="dark" />
+        </tb-page-layout>
+      </div>
     `,
   }));

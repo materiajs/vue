@@ -2,12 +2,16 @@ import t from 'vue-types';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import page, { componentObject } from '@/components/structures/page';
 import { cloneDeep, isEmpty } from 'lodash';
+import store from '@/components/structures/page/store';
+import uuid from 'uuid';
 
 export default {
+  store,
   props: {
     arrayBind: t.object.def({}),
     id: t.string.def('root'),
     repeatIndex: t.number,
+    editMode: t.bool.def(false),
   },
   data: () => ({
     page,
@@ -15,10 +19,10 @@ export default {
   computed: {
     ...mapState([
       'children',
-      'editMode',
       'componentList',
       'dataArrays',
       'pageData',
+      'minimizedList',
     ]),
     ...mapGetters([
       'getChildrenByParentUid',
@@ -26,9 +30,13 @@ export default {
       'getComponentById',
       'getValueByUid',
     ]),
-    getChildren() {
-      return this.component.children;
-      // .map(componentId => this.componentList.find(component => component.id === componentId));
+    getChildren: {
+      get() {
+        return this.component.children;
+      },
+      set(children) {
+        this.setChildren({ id: this.id, children });
+      },
     },
     component() {
       return this.getComponentById(this.id);
@@ -39,6 +47,18 @@ export default {
       }
       return null;
     },
+    getComponentOptions() {
+      return this.page.getComponentOptions(this.component.componentId);
+    },
+    getComponentMeta() {
+      return this.page.getComponentMeta(this.component.componentId);
+    },
+    getRootComponent() {
+      if (this.component) {
+        return this.page.getRootComponent(this.component.componentId);
+      }
+      return null;
+    },
     value: {
       get() {
         return this.component && this.component.value;
@@ -46,6 +66,19 @@ export default {
       set(value) {
         this.setComponentValue({ id: this.id, value });
       },
+    },
+    textValue() {
+      if (this.isValueDynamic) {
+        if (this.value.type === 'array') {
+          const [key, prop] = this.value.value.split('.');
+          const { index } = this.getArrayBind[key];
+          if (index) {
+            return this.dataArrays[key][index][prop];
+          }
+        }
+        return this.pageData[this.value.value].toString();
+      }
+      return this.value.value;
     },
     dataOptions() {
       const a = Object.keys(this.pageData)
@@ -80,12 +113,6 @@ export default {
       a.push({ name: 'None', value: undefined });
       return a;
     },
-    getRepeat() {
-      if (this.component.repeat) {
-        return new Array(this.dataArrays[this.component.repeat].length);
-      }
-      return 1;
-    },
     getArrayBind() {
       const res = {
         ...this.arrayBind,
@@ -97,15 +124,20 @@ export default {
       };
       return res;
     },
+    isMinimized() {
+      return this.minimizedList.includes(this.component.id);
+    },
   },
   methods: {
     ...mapActions([
       'addComponent',
+      'removeComponent',
       'setComponentValue',
       'setEditMode',
       'moveDirection',
-      'setDataOptions',
       'setRepeat',
+      'setChildren',
+      'toggleMinimized',
     ]),
     findParentId(id) {
       const parent = this.getParentByChildId(id);
@@ -115,36 +147,42 @@ export default {
       return null;
     },
     toggleEditMode() {
+      localStorage.setItem('componentList', JSON.stringify(this.componentList));
       return this.setEditMode();
     },
-    removeComponent() {
-      this.$emit('removeComponent', this.value);
+    onRemoveComponent() {
+      this.removeComponent({ id: this.id });
+    },
+    onSaveAsTemplate() {
+      const children = [];
+      const getChildren = (id) => {
+        const component = this.getComponentById(id);
+        const newId = uuid.v4();
+        children.push({ ...component });
+        component.children.forEach(getChildren);
+      };
+      getChildren(this.id);
+      const component = {
+        id: uuid.v4(),
+        children,
+        componentId: 'my-template',
+        value: {
+          value: '',
+        },
+      };
+      const stringy = JSON.stringify(component);
+      localStorage.setItem('my-template', stringy);
+      console.debug(JSON.parse(localStorage.getItem('my-template'))); // TODO - Remove console output
     },
     addEmptyChild(componentId) {
       const component = cloneDeep(componentObject);
       component.componentId = componentId;
       this.addComponent({ component, parentId: this.id });
     },
-    checkChildrenValue(componentId) {
-      if (!this.getChildren || this.getChildren.length === 0) {
-        this.addEmptyChild(componentId);
-      }
-    },
     onSelectComponent(component) {
       const parentId = this.id;
       console.debug('Adding component to - ', parentId); // TODO - Remove console output
       this.addComponent({ component, parentId });
-    },
-    moveOrderUp() {
-      const { id } = this.component;
-      this.moveDirection({ id });
-    },
-    moveOrderDown() {
-      const { id } = this.component;
-      this.moveDirection({ id, direction: -1 });
-    },
-    onSetDataOptions(dataOptions) {
-      this.setDataOptions({ id: this.id, dataOptions });
     },
     onSetRepeat(repeat) {
       this.setRepeat({ id: this.id, repeat });
@@ -158,6 +196,10 @@ export default {
     },
     getPageComponentByComponentId(componentId) {
       return this.page.getComponent(componentId);
+    },
+    onToggleMinimized() {
+      const { id } = this.component;
+      this.toggleMinimized({ id });
     },
   },
   watch: {

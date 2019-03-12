@@ -1,30 +1,43 @@
 <template>
-  <tb-transition
-    transition-name="expand-collapse">
-    <div
-      v-if="value"
-      :class="[position]"
-      class="tb-action-box">
+  <div class="tb-action-box-wrapper">
+    <tb-transition
+      transition-name="expand-collapse">
       <div
-        class="tb-action-box-body tb-card-light">
-        <slot />
+        v-if="value"
+        :class="[position, size]"
+        class="tb-action-box">
+        <div
+          :style="getElementStyle"
+          v-on-clickaway="onClickOutside"
+          class="tb-action-box-body tb-card-light">
+          <slot />
+        </div>
       </div>
-    </div>
-  </tb-transition>
+    </tb-transition>
+  </div>
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
 import t from 'vue-types';
-import { ClickOutside } from '@/directives';
+import themeable from '@/mixins/themeable';
+import sizeable from '@/mixins/sizeable';
 
 export default {
   name: 'tb-action-box',
+  mixins: [
+    clickaway,
+    themeable,
+    sizeable,
+  ],
   props: {
     position: t.oneOf(['bottom-left', 'bottom-right']).def('bottom-left'),
     value: t.bool.def(false),
   },
-  directives: {
-    ClickOutside,
+  methods: {
+    onClickOutside() {
+      this.$emit('close');
+    },
   },
 };
 </script>
@@ -37,6 +50,9 @@ export default {
     padding-top: 7px;
     top: 100%;
     z-index: 100;
+    &-body {
+      box-shadow: $box-shadow-heavy;
+    }
     &:before {
       content: '';
       display: inline-block;
@@ -70,6 +86,9 @@ export default {
         right: 8px;
         left: unset;
       }
+    }
+    &.large {
+      min-width: 480px;
     }
   }
 </style>

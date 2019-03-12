@@ -4,7 +4,8 @@
     class="tb-input tb-frame"
     :class="{ focused: isFocused }"
     :style="wrapperStyle"
-    v-click-outside="onInputBlur">
+    v-on-clickaway="onInputBlur"
+  >
     <slot />
     <input
       v-if="type !== 'textarea'"
@@ -41,12 +42,13 @@
 
 <script>
 import t from 'vue-types';
-import { ClickOutside } from '@/directives';
+import { mixin as clickaway } from 'vue-clickaway';
 import themeable, { defaultAccentColor } from '@/mixins/themeable';
 
 export default {
   name: 'tb-input',
   mixins: [
+    clickaway,
     themeable,
   ],
   props: {
@@ -61,9 +63,6 @@ export default {
   data: () => ({
     inputFocused: false,
   }),
-  directives: {
-    ClickOutside,
-  },
   computed: {
     isFocused() {
       return this.focused || this.inputFocused;
@@ -117,6 +116,8 @@ export default {
       resize: vertical;
       outline: none;
       flex: 1;
+      font-family: inherit;
+      font-size: 1rem;
       height: 200px;
     }
 

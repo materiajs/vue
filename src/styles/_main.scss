@@ -3,6 +3,7 @@
 
 body, html {
   font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
 }
 
 input {
@@ -27,6 +28,7 @@ input {
   &.builder {
     outline: none;
     border: 1px dashed #BBB;
+    border-top: none;
   }
 
   &-placeholder {
@@ -65,7 +67,6 @@ input {
   background: white;
   border-radius: $border-radius-standard;
   box-shadow: $box-shadow-standard;
-  padding: 15px;
 
   &-light {
     background: white;

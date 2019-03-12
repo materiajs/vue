@@ -11,9 +11,11 @@ storiesOf('Blocks/PageLayout', module)
           
           This element always fills to at least the bottom of the screen
         </tb-page-layout>
-        <tb-page-layout :dark="true">
-          Content here
-        </tb-page-layout>
+        <tb-container>
+          TbContainer
+          <br>
+          This has a max-width of 650px and can be used for docs, articles etc.
+        </tb-container>
       </div>
     `,
   }));

@@ -37,9 +37,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-  .tb-page-layout {
-    padding: 15px;
-  }
-</style>

@@ -47,6 +47,7 @@ export default {
     outline: none;
     padding: 10px 15px;
     transition: $standard-transition;
+    white-space: nowrap;
 
     >* {
       min-width: 15px;

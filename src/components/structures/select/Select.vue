@@ -1,7 +1,6 @@
 <template>
   <div
     @click="onClickSelect"
-    v-click-outside="onCloseSelect"
     class="tb-select">
     <slot name="trigger">
       <tb-input
@@ -19,7 +18,9 @@
       </tb-input>
     </slot>
     <div class="tb-select-action-box-wrapper">
-      <tb-action-box :position="position" :value="open">
+      <tb-action-box
+        @close="onCloseSelect"
+        :position="position" :value="open">
         <tb-list :items="listItems">
           <template slot="item" slot-scope="{ item }">
             <tb-checkbox
@@ -43,7 +44,6 @@
 import t from 'vue-types';
 import isEmpty from 'lodash/isEmpty';
 import Fuse from 'fuse.js';
-import { ClickOutside } from '@/directives';
 import themeable from '@/mixins/themeable';
 import { TbInput, TbList, TbCheckbox } from '@/components/blocks';
 import { TbActionBox, TbChipList } from '@/components/composites';
@@ -79,9 +79,6 @@ export default {
     open: false,
     searchString: '',
   }),
-  directives: {
-    ClickOutside,
-  },
   computed: {
     isSingleValue() {
       return this.singleValue === true;

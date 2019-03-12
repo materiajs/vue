@@ -1,17 +1,16 @@
 <template>
-  <tb-flex-item v-bind="value">
+  <div class="tb-flex-layout-builder">
     <template v-if="editMode">
       <builder-toolbar :id="id">
-        Flex item
+        Card
         <tb-spacer />
       </builder-toolbar>
     </template>
     <children-builder
-      :array-bind="getArrayBind"
-      :edit-mode="editMode"
       :repeat-index="repeatIndex"
+      :array-bind="getArrayBind"
       :id="id"></children-builder>
-  </tb-flex-item>
+  </div>
 </template>
 
 <script>
@@ -20,7 +19,7 @@ import BuilderToolbar from './BuilderToolbar.vue';
 import ChildrenBuilder from './ChildrenBuilder.vue';
 
 export default {
-  name: 'FlexItemBuilder',
+  name: 'FlexLayoutBuilder',
   mixins: [
     builder,
   ],

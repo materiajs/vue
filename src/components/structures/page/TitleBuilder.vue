@@ -7,15 +7,22 @@
         Title
         <tb-spacer />
       </builder-toolbar>
-      <tb-padding padding="0 0 15px">
-        <tb-input v-if="isValueDynamic" :value="dataOptionsDisplay" />
-        <tb-input v-else :value="value.value" @input="inputVal => { value = { value: inputVal }; }" />
-      </tb-padding>
+      <tb-transition transition-name="expand-collapse">
+        <div v-if="!isMinimized">
+          <tb-padding padding="15px 0 15px">
+            <tb-input v-if="isValueDynamic" :value="dataOptionsDisplay" />
+            <tb-input
+              v-else
+              :value="value.value"
+              @input="inputVal => { value = { value: inputVal }; }" />
+          </tb-padding>
+        </div>
+      </tb-transition>
     </template>
     <tb-title
       v-else
-      size="large"
-      :value="titleValue"></tb-title>
+      v-bind="value"
+      :value="textValue"></tb-title>
   </div>
 </template>
 
@@ -30,20 +37,6 @@ export default {
   ],
   components: {
     BuilderToolbar,
-  },
-  computed: {
-    titleValue() {
-      if (this.isValueDynamic) {
-        if (this.value.type === 'array') {
-          console.debug(this.getArrayBind); // TODO - Remove console output
-          const [key, prop] = this.value.value.split('.');
-          const index = this.getArrayBind[key].index;
-          return this.dataArrays[key][index][prop];
-        }
-        return this.pageData[this.value.value].toString();
-      }
-      return this.component.getValue(this.component);
-    },
   },
 };
 </script>

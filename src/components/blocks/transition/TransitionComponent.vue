@@ -47,9 +47,9 @@ export default {
       }),
       'expand-collapse': el => ({
         beforeEnter: { opacity: 0, overflow: 'hidden' },
-        enter: { 'max-height': [`${el.clientHeight}px`, 0], opacity: 1, translateY: [0, '-15px'] },
+        enter: { 'max-height': [`${el.clientHeight}px`, 0], opacity: 1 },
         beforeLeave: { 'max-height': `${el.clientHeight}px`, overflow: 'hidden' },
-        leave: { opacity: [0, 1], 'max-height': 0, translateY: ['-15px', 0] },
+        leave: { opacity: [0, 1], 'max-height': 0 },
       }),
     },
   }),

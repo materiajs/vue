@@ -1,29 +1,27 @@
 <template>
   <div id="app">
-    <tb-form title="Title">
-      <tb-input v-model="name" placeholder="Name"/>
-      <tb-input v-model="age" placeholder="Age" type="number"/>
-      <tb-input v-model="dob" placeholder="DOB"/>
-      <template slot="actions">
-        <tb-button :action="buttonAction" text="Cancel" />
-        <tb-button :action="buttonAction" type="primary" text="Submit" />
-      </template>
-      <tb-select
-        placeholder="Select multiple"
-        v-model="selected"
-        :options="selectOptions">
-        <template slot-scope="{ option }">
-          {{ option.value }}
-        </template>
-      </tb-select>
-    </tb-form>
+    <tb-toolbar type="primary" :dark="dark" position="sticky" top="0">
+      Page builder
+      <tb-spacer />
+      <tb-nav-link>
+        <div @click="() => dark = !dark">
+          Toggle dark
+        </div>
+      </tb-nav-link>
+    </tb-toolbar>
+    <tb-page-layout :dark="dark" dark-color="primary-light">
+      <tb-grid-layout grid-template-columns="50% 50%">
+        <tb-page-builder :edit-mode="false" :dark="dark" />
+        <tb-padding padding="">
+          <tb-page-builder :edit-mode="true" :dark="dark" />
+        </tb-padding>
+      </tb-grid-layout>
+    </tb-page-layout>
   </div>
 </template>
 
 <script>
-import { TbInput, TbButton } from '@/components/blocks';
-import { TbForm } from '@/components/composites';
-import { TbSelect } from '@/components/structures';
+import { TbPageBuilder } from '@/components/structures';
 
 export default {
   name: 'app',
@@ -32,12 +30,10 @@ export default {
     age: '',
     dob: '',
     selected: [],
+    dark: false,
   }),
   components: {
-    TbForm,
-    TbInput,
-    TbButton,
-    TbSelect,
+    TbPageBuilder,
   },
   computed: {
     selectOptions() {
@@ -55,10 +51,4 @@ export default {
 </script>
 
 <style lang="scss">
-  body, html {
-    background: $primary-color;
-  }
-  #app {
-    padding: 15px;
-  }
 </style>

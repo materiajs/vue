@@ -10,12 +10,7 @@ import t from 'vue-types';
 export default {
   name: 'GridLayout',
   props: {
-    columns: t.oneOfType([t.number, t.string]),
-  },
-  computed: {
-    gridTemplateColumns() {
-      return `repeat(${this.columns}, 1fr)`;
-    },
+    gridTemplateColumns: t.string.def('280px 1fr'),
   },
 };
 </script>
@@ -23,6 +18,5 @@ export default {
 <style scoped lang="scss">
   .tb-grid-layout {
     display: grid;
-    grid-gap: 15px;
   }
 </style>

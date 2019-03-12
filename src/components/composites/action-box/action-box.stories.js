@@ -2,7 +2,6 @@ import { storiesOf } from '@storybook/vue';
 import Vue from 'vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 import ActionBox from './ActionBox.vue';
-import { ClickOutside } from '@/directives';
 
 Vue.component('tb-action-box', ActionBox);
 
@@ -25,9 +24,6 @@ storiesOf('Composites/Action Box', module)
         'margin-bottom': '15px',
       },
     }),
-    directives: {
-      ClickOutside,
-    },
     template: `
       <div>
         <div style="position: relative">

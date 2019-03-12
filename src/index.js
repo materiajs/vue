@@ -1,15 +1,12 @@
 import * as blocks from './components/blocks/index';
 import * as composites from './components/composites/index';
 import * as structures from './components/structures/index';
-import * as styledComponents from './components/styled-components/index';
-import { ClickOutside } from './directives';
 import './components/structures/page/store';
 
 const components = {
   ...blocks,
   ...composites,
   ...structures,
-  ...styledComponents,
 };
 
 export default {
@@ -35,6 +32,5 @@ export default {
       .forEach((name) => {
         Vue.component(name, components[name]);
       });
-    Vue.directive('click-outside', ClickOutside);
   },
 };

@@ -1,39 +1,26 @@
 <template>
-  <div
-    class="tb-container-wrapper"
-    :style="_getStyle"
-  >
-    <div class="tb-container" :style="getLayoutStyle">
-      <slot />
-    </div>
+  <div class="tb-container" :style="_getStyle">
+    <slot />
   </div>
 </template>
 
 <script>
 import themeable from '@/mixins/themeable';
-import layout from '@/mixins/layout';
-import display from '@/mixins/display';
+import stylable from '@/mixins/stylable';
 
 export default {
   name: 'Container',
   mixins: [
-    display,
-    layout,
+    stylable,
     themeable,
   ],
   computed: {
     _getStyle() {
       return {
         ...this.getElementStyle,
-        ...this.getDisplayStyle,
+        ...this.getStyle,
       };
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-  .tb-container {
-    margin: auto;
-  }
-</style>

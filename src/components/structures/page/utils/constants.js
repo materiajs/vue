@@ -62,6 +62,22 @@ const flexDirection = {
   ],
 };
 
+const margin = {
+  name: 'margin',
+  displayName: 'Margin',
+  type: 'select',
+  selectOptions: [
+    { name: 'None', value: '0' },
+    { name: 'Auto', value: 'auto' },
+    { name: '15px', value: '15px' },
+    { name: '30px', value: '30px' },
+    { name: '0 15px', value: '0 15px' },
+    { name: '0 30px', value: '0 30px' },
+    { name: '15px 0', value: '15px 0' },
+    { name: '30px 0', value: '30px 0' },
+  ],
+};
+
 const flexOptions = {
   name: 'flex',
   displayName: 'Flex',
@@ -77,6 +93,7 @@ export const componentOptions = {
     colorOptions,
     displayOptions,
     flexDirection,
+    margin,
     {
       name: 'max-width',
       displayName: 'Max width',
@@ -112,6 +129,7 @@ export const componentOptions = {
     },
   ],
   [componentIds.TB_CARD]: [
+    margin,
     displayOptions,
     flexOptions,
     flexDirection,
@@ -123,20 +141,6 @@ export const componentOptions = {
         { name: 'None', value: '0' },
         { name: '15px', value: '15px' },
         { name: '30px', value: '30px' },
-      ],
-    },
-    {
-      name: 'margin',
-      displayName: 'Margin',
-      type: 'select',
-      selectOptions: [
-        { name: 'None', value: '0' },
-        { name: '15px', value: '15px' },
-        { name: '30px', value: '30px' },
-        { name: '0 15px', value: '0 15px' },
-        { name: '0 30px', value: '0 30px' },
-        { name: '15px 0', value: '15px 0' },
-        { name: '30px 0', value: '30px 0' },
       ],
     },
   ],

@@ -2,13 +2,16 @@
   <div
     v-if="template"
     class="tb-template-builder">
+    <tb-toolbar v-if="editMode">
+      Template
+    </tb-toolbar>
     <component
+      v-else
       :is="getComponentById(getRootComponent.componentId)"
       :id="getRootComponent.id"
       :array-bind="{}"
       :edit-mode="editMode"
     />
-    {{ template.children }}
   </div>
 </template>
 
@@ -28,19 +31,12 @@ export default {
     template() {
       return JSON.parse(localStorage.getItem('my-template'));
     },
+    templateComponent() {
+      return this.template && this.template.find(c => c.template === true);
+    },
     getRootComponent() {
-      let template;
-      this.template.children.forEach((child) => {
-        console.debug(child); // TODO - Remove console output
-        const filtered = this.template.children
-          .filter(grandChild => child.children.includes(grandChild.id));
-        console.debug(filtered); // TODO - Remove console output
-        if (filtered.length === 0) {
-          template = child;
-          console.debug('found', child.componentId); // TODO - Remove console output
-        }
-      });
-      return template;
+      return this.template
+        .find(c => c.id === this.templateComponent.children[0]);
     },
   },
   methods: {

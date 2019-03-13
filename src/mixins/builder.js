@@ -39,7 +39,7 @@ export default {
       },
     },
     component() {
-      return this.getComponentById(this.id);
+      return this.getComponentById(this.id) || {};
     },
     getComponent() {
       if (this.component) {
@@ -72,10 +72,11 @@ export default {
         if (this.value.type === 'array') {
           const [key, prop] = this.value.value.split('.');
           const { index } = this.getArrayBind[key];
-          if (index) {
+          if (index !== undefined) {
             return this.dataArrays[key][index][prop];
           }
         }
+        console.debug(this.pageData, this.value); // TODO - Remove console output
         return this.pageData[this.value.value].toString();
       }
       return this.value.value;
@@ -146,31 +147,47 @@ export default {
       }
       return null;
     },
-    toggleEditMode() {
-      localStorage.setItem('componentList', JSON.stringify(this.componentList));
-      return this.setEditMode();
-    },
     onRemoveComponent() {
       this.removeComponent({ id: this.id });
     },
-    onSaveAsTemplate() {
+    getDescendants(id) {
       const children = [];
       const getChildren = (id) => {
         const component = this.getComponentById(id);
-        const newId = uuid.v4();
         children.push({ ...component });
         component.children.forEach(getChildren);
       };
-      getChildren(this.id);
+      getChildren(id);
+      return children;
+    },
+    onSaveAsTemplate() {
+      const children = [...this.getDescendants(this.id)];
+      console.debug(children.length); // TODO - Remove console output
+      let newRootId;
+      children.forEach((child) => {
+        const parent = children.find(c => c.children.includes(child.id));
+        const newId = uuid.v4();
+        if (parent) {
+          const idx = parent.children.findIndex(c => c === child.id);
+          parent.children[idx] = newId;
+        }
+        child.id = newId;
+        if (!parent) {
+          newRootId = child.id;
+          console.debug('New root', newRootId); // TODO - Remove console output
+        }
+      });
       const component = {
         id: uuid.v4(),
-        children,
+        children: [newRootId],
         componentId: 'my-template',
         value: {
           value: '',
         },
+        template: true,
       };
-      const stringy = JSON.stringify(component);
+      children.unshift(component);
+      const stringy = JSON.stringify(children);
       localStorage.setItem('my-template', stringy);
       console.debug(JSON.parse(localStorage.getItem('my-template'))); // TODO - Remove console output
     },
@@ -196,6 +213,10 @@ export default {
     },
     getPageComponentByComponentId(componentId) {
       return this.page.getComponent(componentId);
+    },
+    getPageComponentById(id) {
+      const storeComponent = this.getComponentById(id);
+      return this.getPageComponentByComponentId(storeComponent.componentId);
     },
     onToggleMinimized() {
       const { id } = this.component;

@@ -6,10 +6,10 @@
     @input="onSelect"
     position="bottom-right"
     placeholder="Add component to layout"
-    :options="components"
+    :options="options"
   >
     <div slot="item" slot-scope="{ option }">
-      {{ option.name }}
+      {{ option.name || option.componentId }}
     </div>
     <tb-fa
       slot="trigger"
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { cloneDeep } from 'lodash';
 import { components } from '.';
 
@@ -26,6 +27,16 @@ export default {
   data: () => ({
     components,
   }),
+  computed: {
+    ...mapState([
+      'componentList',
+    ]),
+    options() {
+      const parsed = JSON.parse(localStorage.getItem('my-template'));
+      const templates = parsed.filter(c => c.template === true);
+      return this.components.concat(templates);
+    },
+  },
   methods: {
     onSelect(component) {
       this.$emit('select', cloneDeep(component));

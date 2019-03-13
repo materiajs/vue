@@ -1,27 +1,29 @@
 <template>
-  <tb-margin :margin="margin" :style="getDisplayStyle">
-    <div class="tb-card" :style="getElementStyle">
-      <div class="tb-card-layout" :style="getLayoutStyle">
-        <slot />
-      </div>
-    </div>
-  </tb-margin>
+  <div class="tb-card" :style="_getStyle">
+    <slot />
+  </div>
 </template>
 
 <script>
 import themeable, { defaultAccentColor } from '@/mixins/themeable';
-import layout from '@/mixins/layout';
-import display from '@/mixins/display';
+import stylable from '@/mixins/stylable';
 
 export default {
   name: 'Card',
   mixins: [
-    display,
-    layout,
+    stylable,
     themeable,
   ],
   props: {
     darkColor: defaultAccentColor,
+  },
+  computed: {
+    _getStyle() {
+      return {
+        ...this.getElementStyle,
+        ...this.getStyle,
+      };
+    },
   },
 };
 </script>

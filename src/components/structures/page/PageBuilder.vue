@@ -31,7 +31,6 @@
           <!--</tb-flex-item>-->
         </tb-flex-layout>
     <!--<tb-dialog></tb-dialog>-->
-    <template-builder />
       <!--</div>-->
     <!--</tb-grid-layout>-->
     <!--<pre v-if="editMode">-->
@@ -46,7 +45,6 @@
 import { mapActions, mapState } from 'vuex';
 import ComponentSelect from './ComponentSelect.vue';
 import ChildrenBuilder from './ChildrenBuilder.vue';
-import TemplateBuilder from './TemplateBuilder.vue';
 import { builder } from '@/mixins';
 
 export default {
@@ -54,19 +52,25 @@ export default {
   components: {
     ChildrenBuilder,
     ComponentSelect,
-    TemplateBuilder,
   },
   mixins: [
     builder,
   ],
   computed: {
-    ...mapState(['componentList'])
+    ...mapState(['componentList']),
   },
   created() {
-    let componentList = JSON.parse(localStorage.getItem('componentList')) || [];
+    let componentList = JSON.parse(localStorage.getItem('componentList'));
     const template = JSON.parse(localStorage.getItem('my-template'));
     if (template) {
-      componentList = componentList.concat(template.children);
+      componentList = componentList.concat(template);
+    }
+    if (!componentList || componentList === []) {
+      componentList = [{
+        id: 'root',
+        children: [],
+        value: {},
+      }];
     }
     this.setComponentList({ componentList });
   },
@@ -74,12 +78,25 @@ export default {
     ...mapActions([
       'setComponentList',
     ]),
+    toggleEditMode() {
+      localStorage.setItem('componentList', JSON.stringify(this.getDescendants(this.id)));
+      return this.setEditMode();
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
   .tb-page-builder {
-    .side-bar {}
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    &::-webkit-scrollbar { /* WebKit */
+      width: 0;
+      height: 0;
+    }
   }
 </style>

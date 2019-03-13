@@ -119,7 +119,7 @@ export const components = [
 
 export default {
   getComponent(componentId) {
-    return componentsMap[componentId].default;
+    return componentsMap[componentId] ? componentsMap[componentId].default : Builder;
   },
   getRootComponent(componentId) {
     return componentsMap[componentId] && componentsMap[componentId].root;

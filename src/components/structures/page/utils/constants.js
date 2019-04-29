@@ -88,12 +88,32 @@ const flexOptions = {
   ],
 };
 
+const gridTemplateColumns = {
+  name: 'grid-template-columns',
+  displayName: 'Grid template columns',
+  type: 'select',
+  selectOptions: [
+    { name: '50%', value: '50%' },
+  ],
+};
+
+const gridGap = {
+  name: 'grid-gap',
+  displayName: 'Grid gap',
+  type: 'select',
+  selectOptions: [
+    { name: '15px', value: '15px' },
+  ],
+};
+
 export const componentOptions = {
   [componentIds.TB_CONTAINER]: [
     colorOptions,
     displayOptions,
     flexDirection,
     margin,
+    gridTemplateColumns,
+    gridGap,
     {
       name: 'max-width',
       displayName: 'Max width',
@@ -133,6 +153,8 @@ export const componentOptions = {
     displayOptions,
     flexOptions,
     flexDirection,
+    gridTemplateColumns,
+    gridGap,
     {
       name: 'padding',
       displayName: 'Padding',

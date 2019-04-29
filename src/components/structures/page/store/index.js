@@ -99,6 +99,12 @@ export default new Vuex.Store({
       component.value = value;
       state.componentList.splice(state.componentList.findIndex(c => c.id === id), 1, component);
     },
+    SET_COMPONENT_STYLE(state, { id, value }) {
+      console.debug('MUT Setting style'); // TODO - Remove console output
+      const component = state.componentList.find(c => c.id === id);
+      component.style = value;
+      state.componentList.splice(state.componentList.findIndex(c => c.id === id), 1, component);
+    },
     SET_EDIT_MODE(state, editMode = !state.editMode) {
       state.editMode = editMode;
     },
@@ -164,6 +170,9 @@ export default new Vuex.Store({
     },
     setComponentValue({ commit }, params) {
       commit('SET_COMPONENT_VALUE', params);
+    },
+    setComponentStyle({ commit }, params) {
+      commit('SET_COMPONENT_STYLE', params);
     },
     setEditMode({ commit }, editMode) {
       commit('SET_EDIT_MODE', editMode);

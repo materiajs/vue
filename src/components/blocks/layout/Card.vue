@@ -21,7 +21,7 @@ export default {
     _getStyle() {
       return {
         ...this.getElementStyle,
-        ...this.getStyle,
+        ...this.styleOptions,
       };
     },
   },

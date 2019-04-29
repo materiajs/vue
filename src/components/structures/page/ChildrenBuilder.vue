@@ -12,6 +12,7 @@
         v-bind="value"
         :wrapper="true"
         :edit-mode="editMode"
+        :dark="dark"
         :is="component.type === 'layout' ? getRootComponent : 'div'"
       >
         <draggable v-model="getChildren">
@@ -22,6 +23,7 @@
                 :is="getPageComponentById(child)"
                 :id="child"
                 :array-bind="getArrayBind"
+                :dark="dark"
                 :edit-mode="editMode"
                 :repeat-index="childRepeat"
                 :key="`${key}${childRepeat}`"
@@ -46,6 +48,7 @@
             :id="child"
             :array-bind="getArrayBind"
             :edit-mode="editMode"
+            :dark="dark"
             :repeat-index="childRepeat"
             :key="`${key}${childRepeat}`"
           />

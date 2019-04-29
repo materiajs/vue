@@ -9,6 +9,7 @@ export default {
   store,
   props: {
     arrayBind: t.object.def({}),
+    dark: t.bool.def(false),
     id: t.string.def('root'),
     repeatIndex: t.number,
     editMode: t.bool.def(false),
@@ -65,6 +66,14 @@ export default {
       },
       set(value) {
         this.setComponentValue({ id: this.id, value });
+      },
+    },
+    styleOptions: {
+      get() {
+        return this.component && this.component.style;
+      },
+      set(value) {
+        this.setComponentStyle({ id: this.id, value });
       },
     },
     textValue() {
@@ -134,6 +143,7 @@ export default {
       'addComponent',
       'removeComponent',
       'setComponentValue',
+      'setComponentStyle',
       'setEditMode',
       'moveDirection',
       'setRepeat',
@@ -152,8 +162,8 @@ export default {
     },
     getDescendants(id) {
       const children = [];
-      const getChildren = (id) => {
-        const component = this.getComponentById(id);
+      const getChildren = (_id) => {
+        const component = this.getComponentById(_id);
         children.push({ ...component });
         component.children.forEach(getChildren);
       };

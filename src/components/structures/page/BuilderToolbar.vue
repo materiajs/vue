@@ -63,20 +63,24 @@
               :key="key"
             >
               <tb-padding padding="5px">
-                <tb-title size="xs" padding="0 0 10px">
-                  {{ option.displayName }}
-                </tb-title>
+                <tb-container display="flex" flex-direction="row">
+                  <tb-title size="xs" padding="0 0 10px">
+                    {{ option.displayName }}
+                  </tb-title>
+                  <tb-input :value="component.style[option.name]" @input="val => onSelectStyle(option.name, val)" />
+                </tb-container>
                 <tb-button-group>
                   <tb-button
                     v-for="item in option.selectOptions"
-                    :action="() => onSelectOption(option.name, item.value)"
-                    :color="component.value[option.name] === item.value ? 'primary-light' : null">
+                    :action="() => onSelectStyle(option.name, item.value)"
+                    :color="component.style[option.name] === item.value ? 'primary-light' : null">
                     {{ item.name }}
                   </tb-button>
                 </tb-button-group>
               </tb-padding>
             </div>
           </tb-padding>
+          {{ styleOptions }}
         </tb-action-box>
       </tb-fa>
       <tb-fa :icon="isMinimized ? 'window-maximize' : 'window-minimize'" :action="onToggleMinimized"></tb-fa>
@@ -116,6 +120,13 @@ export default {
     onSelectOption(optionName, value) {
       this.value = {
         ...this.value,
+        [optionName]: value,
+      };
+    },
+    onSelectStyle(optionName, value) {
+      console.debug('Setting style'); // TODO - Remove console output
+      this.styleOptions = {
+        ...this.styleOptions,
         [optionName]: value,
       };
     },

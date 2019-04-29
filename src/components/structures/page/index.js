@@ -50,6 +50,7 @@ export const componentObject = {
   children: [],
   repeat: null,
   canBind: false,
+  style: {},
 };
 
 export const components = [
@@ -92,7 +93,8 @@ export const components = [
     ...componentObject,
     componentId: 'tb-card',
     name: 'Card',
-    value: {
+    value: {},
+    style: {
       padding: '15px',
       margin: '15px',
     },

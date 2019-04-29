@@ -1,38 +1,26 @@
 <template>
   <div class="tb-page-builder">
-    <!--<tb-grid-layout columns="2">-->
-      <!--<tb-side-bar color="primary-light">-->
-        <!--<tb-side-bar-item>-->
-          <!--Heya-->
-        <!--</tb-side-bar-item>-->
-      <!--</tb-side-bar>-->
-      <!--<div>-->
-        <tb-toolbar
-          v-if="editMode"
-          color="accent"
-          :shadow="false">
-          <tb-spacer />
-          <component-select @select="onSelectComponent" />
-          <div>
-            <tb-fa
-              :action="toggleEditMode"
-              :icon="editMode ? 'check' : 'edit'"
-            />
-          </div>
-        </tb-toolbar>
-        <tb-flex-layout>
-          <tb-flex-item>
-            <children-builder
-              :edit-mode="editMode"
-              :id="id"></children-builder>
-          </tb-flex-item>
-          <!--<tb-flex-item>-->
-            <!--<children-builder :id="id"></children-builder>-->
-          <!--</tb-flex-item>-->
-        </tb-flex-layout>
-    <!--<tb-dialog></tb-dialog>-->
-      <!--</div>-->
-    <!--</tb-grid-layout>-->
+    <tb-toolbar
+      v-if="editMode"
+      color="accent"
+      :shadow="false">
+      <tb-spacer />
+      <component-select @select="onSelectComponent" />
+      <div>
+        <tb-fa
+          :action="toggleEditMode"
+          :icon="editMode ? 'check' : 'edit'"
+        />
+      </div>
+    </tb-toolbar>
+    <tb-flex-layout>
+      <tb-flex-item>
+        <children-builder
+          :dark="dark"
+          :edit-mode="editMode"
+          :id="id"></children-builder>
+      </tb-flex-item>
+    </tb-flex-layout>
     <!--<pre v-if="editMode">-->
       <!--<code>-->
         <!--{{ componentList }}-->
@@ -42,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
 import ComponentSelect from './ComponentSelect.vue';
 import ChildrenBuilder from './ChildrenBuilder.vue';
@@ -60,19 +49,27 @@ export default {
     ...mapState(['componentList']),
   },
   created() {
-    let componentList = JSON.parse(localStorage.getItem('componentList'));
-    const template = JSON.parse(localStorage.getItem('my-template'));
-    if (template) {
-      componentList = componentList.concat(template);
-    }
-    if (!componentList || componentList === []) {
-      componentList = [{
-        id: 'root',
-        children: [],
-        value: {},
-      }];
-    }
-    this.setComponentList({ componentList });
+    // let componentList = JSON.parse(localStorage.getItem('componentList'));
+    // const template = JSON.parse(localStorage.getItem('my-template'));
+    // if (template) {
+    //   componentList = componentList.concat(template);
+    // }
+    // if (!componentList || componentList === []) {
+    //   componentList = [{
+    //     id: 'root',
+    //     children: [],
+    //     value: {},
+    //   }];
+    // }
+    axios.get('http://127.0.0.1:8000/api/pages/2', { headers: { 'Content-Type': 'application/json'}})
+      .then(res => {
+        console.debug(res); // TODO - Remove console output
+        // res.data.data.forEach(item => {
+        //    console.debug(JSON.parse(item.componentList)); // TODO - Remove console output
+        // });
+        const componentList = JSON.parse(res.data.componentList);
+        this.setComponentList({ componentList });
+      });
   },
   methods: {
     ...mapActions([
@@ -80,7 +77,17 @@ export default {
     ]),
     toggleEditMode() {
       localStorage.setItem('componentList', JSON.stringify(this.getDescendants(this.id)));
-      return this.setEditMode();
+      const componentList = JSON.stringify(this.getDescendants(this.id));
+      axios.post('http://127.0.0.1:8000/api/pages/', { componentList })
+        .then(res => {
+          console.debug(res); // TODO - Remove console output
+          // res.data.data.forEach(item => {
+          //    console.debug(JSON.parse(item.componentList)); // TODO - Remove console output
+          // });
+          const componentList = JSON.parse(res.data.componentList);
+          this.setComponentList({ componentList });
+        });
+      // return this.setEditMode();
     },
   },
 };

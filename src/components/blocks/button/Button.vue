@@ -44,8 +44,9 @@ export default {
     cursor: pointer;
     display: inline-flex;
     font-size: 16px;
+    height: 35px;
     outline: none;
-    padding: 10px 15px;
+    padding: 0 10px;
     transition: $standard-transition;
     white-space: nowrap;
 
@@ -66,12 +67,10 @@ export default {
     }
     &-slot {
       &-right {
-        margin-right: -5px;
-        margin-left: 5px;
+        margin-right: -10px;
       }
       &-left {
-        margin-left: -5px;
-        margin-right: 5px;
+        margin-left: -10px;
       }
     }
 

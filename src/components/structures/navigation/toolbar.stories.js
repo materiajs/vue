@@ -45,7 +45,7 @@ storiesOf('Structures/Toolbar', module)
          <tb-toolbar :color="null" :shadow="false">
           Null color 
           <tb-spacer />
-          <tb-nav-link>No shadow</tb-nav-link>
+          <tb-nav-link target="_blank" href="http://storybook.andyfeely.com">No shadow</tb-nav-link>
         </tb-toolbar>
         <br>
         <tb-toolbar :dark="dark">

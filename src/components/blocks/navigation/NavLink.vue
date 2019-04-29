@@ -1,19 +1,26 @@
 <template>
-  <div
+  <a
     @click="$emit('click')"
     :class="{ dark }"
-    class="tb-nav-link tb-flex-center">
+    class="tb-nav-link tb-flex-center"
+    :href="href ? href : undefined"
+    :target="target"
+  >
     <div class="tb-nav-link-content">
-      <slot>
-        Nav Linkd
-      </slot>
+      <slot />
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
+import t from 'vue-types';
+
 export default {
   name: 'NavLink',
+  props: {
+    href: t.string,
+    target: t.string,
+  },
   computed: {
     dark() {
       return this.$parent.dark;
@@ -24,6 +31,8 @@ export default {
 
 <style scoped lang="scss">
   .tb-nav-link {
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
     height: 100%;
     padding: 0 15px;

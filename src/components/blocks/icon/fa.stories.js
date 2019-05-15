@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 
 
-storiesOf('Blocks/Fa', module)
+storiesOf('Fa', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     data: () => ({
@@ -13,22 +13,22 @@ storiesOf('Blocks/Fa', module)
         this.value = false;
       },
       open() {
-        console.debug('open'); // TODO - Remove console output
         this.value = true;
       },
     },
     template: `
       <div>
-      <div style="text-align: right">
+      <div style="display: flex; align-items: center; justify-content: center;">
         <tb-fa
           size="large"
           :action="open"
           icon="angle-down" >
           <tb-action-box
-          v-click-outside="close"
-          position="bottom-right" :value="value">
+            @close="close"
+            position="bottom-right" 
+            :value="value">
             <div style="padding: 15px; min-width: 200px">
-              Position bottom right - click here to close
+              Position bottom right - click away to close
             </div>
           </tb-action-box>
         </tb-fa>

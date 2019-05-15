@@ -1,15 +1,16 @@
 <template>
-  <a
+  <div
     @click="$emit('click')"
     :class="{ dark }"
     class="tb-nav-link tb-flex-center"
-    :href="href ? href : undefined"
-    :target="target"
   >
-    <div class="tb-nav-link-content">
-      <slot />
-    </div>
-  </a>
+    <template v-if="href">
+      <a :href="href" :target="target">
+        <slot />
+      </a>
+    </template>
+    <slot v-else />
+  </div>
 </template>
 
 <script>
@@ -39,29 +40,22 @@ export default {
     position: relative;
     text-align: center;
     user-select: none;
+    transition: $standard-transition;
 
-    &:before {
-      background: rgba(0,0,0,0);
-      content: "";
-      position: absolute;
-      top: 0;
-      transition: $standard-transition;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
     &:hover {
-      &:before {
-        background: rgba(0,0,0,0.1);
-      }
+      background: rgba(0,0,0,0.1);
     }
+
     &.dark:hover {
       &:before {
         background: rgba(255, 255, 255, 0.1);
       }
     }
-    &-content {
-      z-index: 10;
+    > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
     }
   }
 </style>

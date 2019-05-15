@@ -29,7 +29,7 @@ const storyData = {
   ],
 };
 
-storiesOf('Structures/Select', module)
+storiesOf('Select', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Select },
@@ -48,7 +48,7 @@ storiesOf('Structures/Select', module)
           :options="singleSelect" />
         <br>
         <tb-select
-          placeholder="Select multiple"
+          placeholder="Select multiple (Hide selected)"
           v-model="multipleBasicValue"
           :hideSelected="true"
           :options="multipleBasic">

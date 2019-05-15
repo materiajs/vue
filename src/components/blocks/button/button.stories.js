@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 
-storiesOf('Blocks/Button', module)
+storiesOf('Button', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     data: () => ({

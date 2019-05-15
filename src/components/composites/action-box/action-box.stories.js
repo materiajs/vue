@@ -5,7 +5,7 @@ import ActionBox from './ActionBox.vue';
 
 Vue.component('tb-action-box', ActionBox);
 
-storiesOf('Composites/Action Box', module)
+storiesOf('Action Box', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: {

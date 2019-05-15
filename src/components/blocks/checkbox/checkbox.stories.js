@@ -5,7 +5,7 @@ import Checkbox from './Checkbox.vue';
 
 Vue.component('tb-checkbox', Checkbox);
 
-storiesOf('Blocks/Checkbox', module)
+storiesOf('Checkbox', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     components: { Checkbox },

@@ -15,7 +15,6 @@ import Vuex from 'vuex';
 
 
 function loadStories() {
-
   const options = {
     theme: {
       primary: '#0288D1',
@@ -27,6 +26,14 @@ function loadStories() {
   Vue.use(toolblox, options);
   const req = require.context('@/components/', true, /\.stories\.js$/);
   req.keys()
+    .sort((_a, _b) => {
+      const a = _a.split('/').pop().toLowerCase();
+      const b = _b.split('/').pop().toLowerCase();
+      if (a.includes('welcome')) return -1;
+      if (a < b) { return -1; }
+      if (a > b) return 1;
+      return 0; // default return value (no sorting)
+    })
     .forEach((filename) => {
       req(filename);
     });

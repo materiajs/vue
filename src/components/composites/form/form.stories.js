@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
-storiesOf('Composites/Form', module)
+storiesOf('Form', module)
   .addDecorator(VueInfoAddon)
   .addDecorator(withKnobs)
   .add('Basic usage', () => {

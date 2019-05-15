@@ -21,7 +21,9 @@
       <tb-action-box
         @close="onCloseSelect"
         :position="position" :value="open">
-        <tb-list :items="listItems">
+        <tb-list
+          v-if="listItems.length"
+          :items="listItems">
           <template slot="item" slot-scope="{ item }">
             <tb-checkbox
               v-if="showCheckboxes"
@@ -35,6 +37,12 @@
           </template>
           <slot />
         </tb-list>
+        <div
+          v-else
+          class="tb-select-action-box-wrapper-no-options"
+        >
+          No options
+        </div>
       </tb-action-box>
     </div>
   </div>
@@ -189,6 +197,9 @@ export default {
     }
     &-action-box-wrapper {
       position: relative;
+      &-no-options {
+        padding: 15px;
+      }
     }
   }
 </style>

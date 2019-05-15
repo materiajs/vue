@@ -57,5 +57,8 @@ export default {
       box-shadow: $box-shadow-heavy;
       z-index: 10;
     }
+    >* {
+      height: 100%;
+    }
   }
 </style>

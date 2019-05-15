@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 
-storiesOf('Blocks/PageLayout', module)
+storiesOf('PageLayout', module)
   .addDecorator(VueInfoAddon)
   .add('Basic usage', () => ({
     template: `

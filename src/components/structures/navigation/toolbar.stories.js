@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Toolbar from './Toolbar.vue';
 
-storiesOf('Structures/Toolbar', module)
+storiesOf('Toolbar', module)
   .addDecorator(VueInfoAddon)
   .addDecorator(withKnobs)
   .add('Basic usage', () => ({
@@ -32,7 +32,7 @@ storiesOf('Structures/Toolbar', module)
         <tb-toolbar color="accent" :shadow="false" size="small">
           Accent
           <tb-spacer />
-          <tb-nav-link>No shadow</tb-nav-link>
+          <tb-nav-link @click="onClickLink">No shadow</tb-nav-link>
           <tb-nav-link>Small</tb-nav-link>
         </tb-toolbar>
         </br>

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import themeable from '@/mixins/themeable';
-import stylable from '@/mixins/stylable';
+import themeable from '../../../mixins/themeable';
+import stylable from '../../../mixins/stylable';
 
 export default {
   name: 'Container',

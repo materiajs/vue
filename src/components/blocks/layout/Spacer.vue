@@ -11,5 +11,6 @@ export default {
 <style scoped lang="scss">
   .tb-spacer {
     flex: 1;
+    min-height: 15px;
   }
 </style>

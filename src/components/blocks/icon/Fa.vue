@@ -1,7 +1,7 @@
 <template>
   <span
     @click="action"
-    class="tb-fa-wrapper"
+    class="tb-fa-wrapper tb-standard-transition"
     :style="getStyle"
   >
     <i class="fa tb-fa" :class="[`fa-${icon}`, size]"></i>
@@ -11,9 +11,13 @@
 
 <script>
 import t from 'vue-types';
+import themeable from '../../../mixins/themeable';
 
 export default {
   name: 'Fa',
+  mixins: [
+    themeable,
+  ],
   props: {
     action: t.func,
     cursor: t.string.def('pointer'),
@@ -24,6 +28,7 @@ export default {
   computed: {
     getStyle() {
       return {
+        color: this.background,
         transform: this.rotate ? `rotate(${this.rotate}deg)` : undefined,
         cursor: this.cursor,
       };
@@ -43,7 +48,9 @@ export default {
     align-items: center;
     &-wrapper {
       position: relative;
-      transition: $standard-transition;
+    }
+    &.small {
+      font-size: 8px;
     }
     &.large {
       font-size: 18px;

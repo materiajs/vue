@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { storiesOf } from '@storybook/vue';
-import VueInfoAddon from 'storybook-addon-vue-info';
+import VueInfoAddon from 'storybook-addon-vue-info/lib/index';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Toolbar from './Toolbar.vue';

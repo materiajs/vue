@@ -1,19 +1,16 @@
 <template>
   <div class="tb-action-box-wrapper">
-    <tb-transition
-      transition-name="expand-collapse">
+    <div
+      v-if="value"
+      :class="[position, size]"
+      class="tb-action-box">
       <div
-        v-if="value"
-        :class="[position, size]"
-        class="tb-action-box">
-        <div
-          :style="getElementStyle"
-          v-on-clickaway="onClickOutside"
-          class="tb-action-box-body tb-card-light">
-          <slot />
-        </div>
+        :style="getElementStyle"
+        v-on-clickaway="onClickOutside"
+        class="tb-action-box-body tb-card-light">
+        <slot />
       </div>
-    </tb-transition>
+    </div>
   </div>
 </template>
 
@@ -52,6 +49,7 @@ export default {
     z-index: 100;
     &-body {
       box-shadow: $box-shadow-heavy;
+      overflow: hidden;
     }
     &:before {
       content: '';

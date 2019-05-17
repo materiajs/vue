@@ -1,7 +1,7 @@
 <template>
   <div
     class="tb-toolbar"
-    :class="[shadow ? 'shadow' : '', size]"
+    :class="[shadow ? 'tb-box-shadow-heavy' : '', size]"
     :style="_getStyle">
     <slot />
   </div>
@@ -9,8 +9,8 @@
 
 <script>
 import t from 'vue-types';
-import { defaultPrimaryColor } from '@/mixins/themeable';
-import { position, themeable } from '@/mixins';
+import { defaultPrimaryColor } from '../../../mixins/themeable';
+import { position, themeable } from '../../../mixins';
 
 export default {
   name: 'toolbar',
@@ -53,8 +53,7 @@ export default {
     &.large {
       height: 75px;
     }
-    &.shadow {
-      box-shadow: $box-shadow-heavy;
+    &.tb-box-shadow-heavy {
       z-index: 10;
     }
     >* {

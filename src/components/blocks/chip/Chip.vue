@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
 
   .chip {
     align-items: center;

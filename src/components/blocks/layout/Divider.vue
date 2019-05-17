@@ -15,6 +15,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
   .tb-divider {
     align-items: center;
     color: $typography-primary-text-color;

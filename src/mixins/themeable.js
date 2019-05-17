@@ -1,4 +1,5 @@
 import t from 'vue-types';
+import { theme, darkTheme } from '../styles/themes';
 
 const colors = {
   PRIMARY: 'primary',
@@ -30,8 +31,8 @@ const white = '#FFF';
 export default {
   props: {
     dark: t.bool.def(false),
-    color: t.oneOf(defaultColors).def(null),
-    darkColor: t.oneOf(defaultColors).def(null),
+    color: t.oneOf(defaultColors),
+    darkColor: t.oneOf(defaultColors),
   },
   computed: {
     isPrimary() {
@@ -60,16 +61,22 @@ export default {
       return {};
     },
     theme() {
-      return this.$toolblox.theme;
+      if (this.$toolblox) {
+        return this.$toolblox.theme;
+      }
+      return theme;
     },
     darkTheme() {
-      return this.$toolblox.darkTheme;
+      if (this.$toolblox) {
+        return this.$toolblox.darkTheme;
+      }
+      return darkTheme;
     },
     background() {
-      return this.dark ? this.darkBackground : (this.theme[this.color] || white);
+      return this.dark ? this.darkBackground : (this.theme[this.color] || null);
     },
     isWhiteBackground() {
-      return this.background === white;
+      return this.background === white || this.background === null;
     },
     darkBackground() {
       let color;

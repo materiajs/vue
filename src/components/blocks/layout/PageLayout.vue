@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import themeable, { defaultAccentColor } from '@/mixins/themeable';
+import themeable, { defaultAccentColor } from '../../../mixins/themeable';
 
 export default {
   name: 'PageLayout',

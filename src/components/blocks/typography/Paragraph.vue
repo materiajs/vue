@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import layout from '@/mixins/layout';
+import layout from '../../../mixins/layout';
 
 export default {
   name: 'Paragraph',

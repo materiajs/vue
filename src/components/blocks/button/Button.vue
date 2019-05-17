@@ -2,7 +2,7 @@
   <button
     @click="action"
     class="tb-button"
-    :style="getElementStyle"
+    :style="_getElementStyle"
     :class="[color]">
     {{ text }}
     <div
@@ -21,7 +21,7 @@
 
 <script>
 import t from 'vue-types';
-import themeable from '@/mixins/themeable';
+import themeable from '../../../mixins/themeable';
 
 export default {
   name: 'tb-button',
@@ -32,15 +32,23 @@ export default {
     action: t.func,
     text: t.string,
   },
+  computed: {
+    _getElementStyle() {
+      return {
+        ...this.getElementStyle,
+        background: (this.background !== null ? this.background : '#FFF'),
+      };
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
   .tb-button {
     align-items: center;
     border-radius: $border-radius-light;
     border: none;
-    box-shadow: $box-shadow-light;
     cursor: pointer;
     display: inline-flex;
     font-size: 16px;
@@ -54,16 +62,9 @@ export default {
       min-width: 15px;
     }
 
+    box-shadow: $box-shadow-light;
     &:active {
       box-shadow: $box-shadow-extra-light;
-    }
-
-    &.primary, &.warn {
-      background: $primary-color;
-      box-shadow: $box-shadow-heavy;
-      &:active {
-        box-shadow: $box-shadow-light;
-      }
     }
     &-slot {
       &-right {
@@ -72,10 +73,6 @@ export default {
       &-left {
         margin-left: -10px;
       }
-    }
-
-    &:hover {
-      filter: brightness(105%);
     }
   }
 </style>

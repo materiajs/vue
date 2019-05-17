@@ -100,3 +100,11 @@ input {
 .tb-fade-enter, .tb-fade-leave-to {
   opacity: 0;
 }
+
+.tb-standard-transition {
+  transition: $standard-transition;
+}
+
+.tb-box-shadow-heavy {
+  box-shadow: $box-shadow-heavy;
+}

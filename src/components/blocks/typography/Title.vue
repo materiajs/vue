@@ -2,7 +2,7 @@
   <tb-margin :margin="margin">
     <div
       class="tb-title"
-      :class="[size]"
+      :class="{ [size]: size, subtitle }"
       :style="getElementStyle"
     >
       <tb-padding :padding="padding">
@@ -16,9 +16,9 @@
 
 <script>
 import t from 'vue-types';
-import layout from '@/mixins/layout';
-import display from '@/mixins/display';
-import themeable, { defaultPrimaryColor } from '@/mixins/themeable';
+import layout from '../../../mixins/layout';
+import display from '../../../mixins/display';
+import themeable from '../../../mixins/themeable';
 
 export default {
   name: 'Title',
@@ -30,13 +30,21 @@ export default {
   props: {
     value: t.string.def(''),
     size: t.oneOf(['xs', 'small', 'regular', 'large', 'xl']),
+    subtitle: t.bool.def(false),
   },
 };
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
+
   .tb-title {
     font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    &.subtitle {
+      color: $text-color-light
+    }
     &.xs {
       font-size: 1.2rem;
     }

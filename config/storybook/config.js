@@ -2,7 +2,6 @@
 import { configure } from '@storybook/vue';
 import Vue from 'vue';
 import toolblox from '@/';
-import Vuex from 'vuex';
 
 // $primary-color-dark:   #512DA8
 // $primary-color:        #673AB7
@@ -17,12 +16,11 @@ import Vuex from 'vuex';
 function loadStories() {
   const options = {
     theme: {
-      primary: '#0288D1',
-      accent: '#448AFF',
-      'primary-light': '#81d4fa',
+      // primary: '#0288D1',
+      // accent: '#448AFF',
+      // 'primary-light': '#81d4fa',
     },
   };
-  Vue.use(Vuex);
   Vue.use(toolblox, options);
   const req = require.context('@/components/', true, /\.stories\.js$/);
   req.keys()

@@ -1,5 +1,8 @@
 <template>
-  <div class="tb-list" :style="getElementStyle">
+  <div
+    class="tb-list"
+    :class="{ bordered }"
+    :style="getElementStyle">
     <slot>
       <div
         v-for="(item, key) in items"
@@ -14,7 +17,7 @@
 
 <script>
 import t from 'vue-types';
-import themeable from '@/mixins/themeable';
+import themeable from '../../../mixins/themeable';
 
 export default {
   name: 'List',
@@ -23,12 +26,17 @@ export default {
   ],
   props: {
     items: t.array,
+    bordered: t.bool.def(false),
   },
 };
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
   .tb-list {
+    &.bordered {
+      border: 1px solid $primary-color-light;
+    }
     &-search-box {
       padding: 5px;
     }

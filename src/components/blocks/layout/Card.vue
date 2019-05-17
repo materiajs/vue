@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import themeable, { defaultAccentColor } from '@/mixins/themeable';
-import stylable from '@/mixins/stylable';
+import themeable, { defaultAccentColor } from '../../../mixins/themeable';
+import stylable from '../../../mixins/stylable';
 
 export default {
   name: 'Card',

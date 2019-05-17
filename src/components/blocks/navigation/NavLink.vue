@@ -2,7 +2,7 @@
   <div
     @click="$emit('click')"
     :class="{ dark }"
-    class="tb-nav-link tb-flex-center"
+    class="tb-nav-link tb-flex-center tb-standard-transition"
   >
     <template v-if="href">
       <a :href="href" :target="target">
@@ -40,8 +40,10 @@ export default {
     position: relative;
     text-align: center;
     user-select: none;
-    transition: $standard-transition;
-
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
     &:hover {
       background: rgba(0,0,0,0.1);
     }

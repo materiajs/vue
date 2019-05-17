@@ -20,10 +20,7 @@ export { default as TbFlexLayout } from './layout/FlexLayout.vue';
 export { default as TbFlexItem } from './layout/FlexItem.vue';
 export { default as TbGridLayout } from './layout/GridLayout.vue';
 export { default as TbSpacer } from './layout/Spacer.vue';
-
-// Form
-export { default as TbFormHeader } from './form/FormHeader.vue';
-export { default as TbFormDivider } from './form/FormDivider.vue';
+export { default as TbLineBreak } from './layout/LineBreak.vue';
 
 // Image
 export { default as TbImage } from './image/ImageComponent.vue';
@@ -32,6 +29,7 @@ export { default as TbImage } from './image/ImageComponent.vue';
 export { default as TbNavLink } from './navigation/NavLink.vue';
 export { default as TbSideBarHeader } from './navigation/SideBarHeader.vue';
 export { default as TbSideBarItem } from './navigation/SideBarItem.vue';
+export { default as TbToolbar } from './toolbar/Toolbar.vue';
 
 
 // Typography

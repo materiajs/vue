@@ -1,37 +1,46 @@
 import { storiesOf } from '@storybook/vue';
 import { linkTo } from '@storybook/addon-links';
-import Vue from 'vue';
-import VueInfoAddon from 'storybook-addon-vue-info/lib/index';
-import ActionBox from './composites/action-box/ActionBox.vue';
-
-Vue.component('tb-action-box', ActionBox);
 
 storiesOf('Toolblox', module)
-  .addDecorator(VueInfoAddon)
   .add('Welcome', () => ({
-    components: {
-      ActionBox,
-    },
+    data: () => ({
+      links: [
+        'Install guide',
+        'Examples',
+        'Theming',
+      ],
+    }),
     methods: {
-      onSelectToolbar() {
-        linkTo('Structures/Toolbar')();
+      onSelectLink(kind) {
+        linkTo('Toolblox', kind)();
       },
     },
     template: `
-      <div>
+      <div style="padding: 15px;">
+        <tb-title>Toolblox</tb-title>
+        <tb-title :subtitle="true" size="xs" >Welcome</tb-title>
+        <tb-line-break color="primary"/>
         <p>
-         Here are some examples of the components available.
+          Toolblox is a library of Vue components that I am currently building.
         </p>
         <p>
-         Be sure to check out the component's storybook to see more detailed examples.
+          It is by no means production ready and is only fit for demo purposes so far.
         </p>
-        <tb-toolbar size="small" color="accent" :shadow="false">
-          Input
+        <tb-toolbar 
+          size="small"
+          color="primary-light"
+          :shadow="false">
+          Contents
           <tb-spacer />
-          <tb-nav-link @click="onSelectToolbar()">
-            Storybook
-          </tb-nav-link>
         </tb-toolbar>
+        <tb-list :bordered="true">
+          <div
+            v-for="link in links" 
+            @click="onSelectLink(link)">
+            <tb-fa icon="circle" size="small" />
+            {{ link }}  
+          </div>
+        </tb-list>
       </div>
     `,
   }));

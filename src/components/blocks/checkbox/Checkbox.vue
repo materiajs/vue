@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
+
   $frame-size: 20px;
   .tb-checkbox {
     align-items: center;

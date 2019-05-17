@@ -43,7 +43,7 @@
 <script>
 import t from 'vue-types';
 import { mixin as clickaway } from 'vue-clickaway';
-import themeable, { defaultAccentColor } from '@/mixins/themeable';
+import themeable, { defaultAccentColor } from '../../../mixins/themeable';
 
 export default {
   name: 'tb-input',
@@ -102,6 +102,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../../../styles/main";
+
   .tb-input {
     cursor: text;
     position: relative;

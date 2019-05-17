@@ -1,7 +1,7 @@
 import * as blocks from './components/blocks/index';
 import * as composites from './components/composites/index';
 import * as structures from './components/structures/index';
-import './components/structures/page/store';
+import { theme, darkTheme } from './styles/themes';
 
 const components = {
   ...blocks,
@@ -13,17 +13,11 @@ export default {
   install: (Vue, options) => {
     Vue.prototype.$toolblox = {
       theme: {
-        primary: '#1565c0',
-        'primary-light': '#1e88e5',
-        accent: '#78909c',
-        warn: '#f44336',
+        ...theme,
         ...(options ? options.theme : {}),
       },
       darkTheme: {
-        primary: '#263238',
-        'primary-light': '#37474f',
-        accent: '#4f5b62',
-        warn: '#f44336',
+        ...darkTheme,
         ...(options ? options.darkTheme : {}),
       },
       dark: false,

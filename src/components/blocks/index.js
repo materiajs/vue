@@ -33,5 +33,14 @@ export { default as TbToolbar } from './toolbar/Toolbar.vue';
 
 
 // Typography
+export { default as TbCode } from './typography/Code.vue';
 export { default as TbTitle } from './typography/Title.vue';
 export { default as TbParagraph } from './typography/Paragraph.vue';
+
+// Window
+export { default as TbWindow } from './window/Window.vue';
+export { default as TbWindowItem } from './window/WindowItem.vue';
+
+// Tabs
+export { default as TbTabs } from './tabs/TabsComponent';
+export { default as TbTab } from './tabs/TabComponent';

@@ -43,7 +43,7 @@ export default {
     margin-bottom: 10px;
     font-weight: bold;
     &.subtitle {
-      color: $text-color-light
+      color: $text-color-light!important
     }
     &.xs {
       font-size: 1.2rem;

@@ -10,7 +10,6 @@
 
 <script>
 import t from 'vue-types';
-import Velocity from 'velocity-animate';
 import { TbTransition } from '../index';
 
 export default {
@@ -23,6 +22,10 @@ export default {
   },
   data: () => ({
     transitionName: 'slide-in-out-left',
+    transitions: [
+      'slide-in-out-left',
+      'slide-in-out-right',
+    ],
   }),
   computed: {
     parentValue() {
@@ -32,35 +35,8 @@ export default {
   watch: {
     parentValue(newVal) {
       if (newVal !== this.value) {
-        this.transitionName = (newVal > this.value ? 'slide-in-out-left' : 'slide-in-out-right');
+        this.transitionName = this.transitions[(newVal > this.value ? 0 : 1)];
       }
-    },
-  },
-  methods: {
-    beforeEnter(el) {
-      el.style.opacity = 0;
-      el.style.height = 0;
-    },
-    enter(el, done) {
-      console.debug(el); // TODO - Remove console output
-      const delay = el.dataset.index * 150;
-      setTimeout(() => {
-        Velocity(
-          el,
-          { opacity: 1, height: '1.6em' },
-          { complete: done },
-        );
-      }, delay);
-    },
-    leave(el, done) {
-      const delay = el.dataset.index * 150;
-      setTimeout(() => {
-        Velocity(
-          el,
-          { opacity: 0, height: 0 },
-          { complete: done },
-        );
-      }, delay);
     },
   },
 };

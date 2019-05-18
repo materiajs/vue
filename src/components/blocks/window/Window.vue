@@ -10,18 +10,23 @@ import t from 'vue-types';
 export default {
   name: 'Window',
   data: () => ({
-    minHeight: '200px',
+    minHeight: '0',
   }),
   props: {
     value: t.number,
   },
   watch: {
-    value() {
-      this.$nextTick(() => {
-        const match = this.$children
-          .find(child => child.value === this.value);
-        this.minHeight = `${match.$el.offsetHeight}px`;
-      });
+    value: {
+      handler() {
+        this.$nextTick(() => {
+          const match = this.$children
+            .find(child => child.value === this.value);
+          if (match) {
+            this.minHeight = `${match.$el.offsetHeight}px`;
+          }
+        });
+      },
+      immediate: true,
     },
   },
 };
@@ -31,6 +36,6 @@ export default {
   .tb-window {
     position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.2s ease;
   }
 </style>

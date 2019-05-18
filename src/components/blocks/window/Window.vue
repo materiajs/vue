@@ -10,7 +10,7 @@ import t from 'vue-types';
 export default {
   name: 'Window',
   data: () => ({
-    minHeight: '0',
+    minHeight: undefined,
   }),
   props: {
     value: t.number,

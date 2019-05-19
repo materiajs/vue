@@ -1,17 +1,17 @@
 <template>
   <div
     @click.stop="onClickCheckbox"
-    class="tb-checkbox">
+    class="mat-checkbox">
     <div
       :class="{ checked: value }"
-      class="tb-checkbox-box tb-frame tb-flex-center">
-      <transition name="tb-fade">
+      class="mat-checkbox-box mat-frame mat-flex-center">
+      <transition name="mat-fade">
         <i
           v-if="value"
-          class="fas fa-check tb-absolute-center"></i>
+          class="fas fa-check mat-absolute-center"></i>
       </transition>
     </div>
-    <div class="tb-checkbox-label">
+    <div class="mat-checkbox-label">
       {{ text }}
     </div>
   </div>
@@ -21,7 +21,7 @@
 import t from 'vue-types';
 
 export default {
-  name: 'tb-checkbox',
+  name: 'mat-checkbox',
   props: {
     text: t.string,
     value: t.bool.def(false),
@@ -39,7 +39,7 @@ export default {
   @import "../../../styles/main";
 
   $frame-size: 20px;
-  .tb-checkbox {
+  .mat-checkbox {
     align-items: center;
     cursor: pointer;
     display: inline-flex;

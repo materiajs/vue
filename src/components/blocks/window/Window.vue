@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-window" :style="{ 'height': minHeight }">
+  <div class="mat-window" :style="{ 'height': minHeight }">
     <slot></slot>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .tb-window {
+  .mat-window {
     position: relative;
     overflow: hidden;
     transition: all 0.2s ease;

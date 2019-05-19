@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tb-page-layout"
+    class="mat-page-layout"
     :style="_getElementStyle">
     <slot />
   </div>

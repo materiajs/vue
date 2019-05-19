@@ -4,9 +4,9 @@ storiesOf('Toolblox', module)
   .add('Install guide', () => ({
     template: `
       <div style="padding: 15px;">
-        <tb-title>Toolblox</tb-title>
-        <tb-title :subtitle="true" size="xs" >Install guide</tb-title>
-        <tb-line-break color="accent"/>
+        <mat-title>Toolblox</mat-title>
+        <mat-title :subtitle="true" size="xs" >Install guide</mat-title>
+        <mat-line-break color="accent"/>
         <p>
           First install Toolblox with npm:
         </p>
@@ -22,24 +22,24 @@ storiesOf('Toolblox', module)
   
   Vue.use(Toolblox);
   </pre>
-  <tb-spacer />
-  <tb-spacer/>
+  <mat-spacer />
+  <mat-spacer/>
   You can also just import components directly if you dont like global registration.
   Ensure you import the main stylesheet somewhere in your app if you do it this way.
   <pre class="code html hljs xml">
 @import "~toolblox/src/styles/main";</pre>
 Then import straight from src:
 <pre class="code html hljs xml">
-import TbToolbar from 'toolblox/src/components/blocks/toolbar/Toolbar.vue';
-import TbNavLink from 'toolblox/src/components/blocks/navigation/NavLink.vue';
+import MatToolbar from 'toolblox/src/components/blocks/toolbar/Toolbar.vue';
+import MatNavLink from 'toolblox/src/components/blocks/navigation/NavLink.vue';
 
 components: {
-  TbFa,
-  TbToolbar,
-  TbNavLink,
-  TbSpacer
+  MatFa,
+  MatToolbar,
+  MatNavLink,
+  MatSpacer
 }</pre>
-  <tb-title :subtitle="true" size="xs" >Install options:</tb-title>
+  <mat-title :subtitle="true" size="xs" >Install options:</mat-title>
   <pre class="code html hljs xml">
         
   import Vue from 'vue';

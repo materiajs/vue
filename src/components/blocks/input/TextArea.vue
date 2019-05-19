@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-text-area">
+  <div class="mat-text-area">
     <textarea></textarea>
   </div>
 </template>

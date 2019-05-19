@@ -1,10 +1,10 @@
 <template>
   <span
     @click="action"
-    class="tb-fa-wrapper tb-standard-transition"
+    class="mat-fa-wrapper mat-standard-transition"
     :style="getStyle"
   >
-    <i class="fa tb-fa" :class="[`fa-${icon}`, size]"></i>
+    <i class="fa mat-fa" :class="[`fa-${icon}`, size]"></i>
     <slot />
   </span>
 </template>
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-fa {
+  .mat-fa {
     font-size: 14px;
     min-width: 30px;
     text-align: center;

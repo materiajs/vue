@@ -1,16 +1,16 @@
 <template>
-  <div class="tb-window-item">
-    <tb-transition :transition-name="transitionName">
+  <div class="mat-window-item">
+    <mat-transition :transition-name="transitionName">
       <div v-if="parentValue === value">
         <slot></slot>
       </div>
-    </tb-transition>
+    </mat-transition>
   </div>
 </template>
 
 <script>
 import t from 'vue-types';
-import { TbTransition } from '../index';
+import { MatTransition } from '../index';
 
 export default {
   name: 'WindowItem',
@@ -18,7 +18,7 @@ export default {
     value: t.number,
   },
   components: {
-    TbTransition,
+    MatTransition,
   },
   data: () => ({
     transitionName: 'slide-in-out-left',

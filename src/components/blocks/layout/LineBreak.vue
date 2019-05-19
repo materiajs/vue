@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tb-line-break"
+    class="mat-line-break"
     :style="getElementStyle"
   ></div>
 </template>
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-line-break {
+  .mat-line-break {
     width: 100%;
     height: 1px;
   }

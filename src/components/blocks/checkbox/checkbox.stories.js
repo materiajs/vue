@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 import Checkbox from './Checkbox.vue';
 
-Vue.component('tb-checkbox', Checkbox);
+Vue.component('mat-checkbox', Checkbox);
 
 storiesOf('Checkbox', module)
   .addDecorator(VueInfoAddon)
@@ -15,10 +15,10 @@ storiesOf('Checkbox', module)
     template: `
       <div>
         <div>
-          <tb-checkbox v-model="value" />
+          <mat-checkbox v-model="value" />
         </div>
         <div>
-          <tb-checkbox v-model="value" text="Label" />
+          <mat-checkbox v-model="value" text="Label" />
         </div>
       </div>
     `,

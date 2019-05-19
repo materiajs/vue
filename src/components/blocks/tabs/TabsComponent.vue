@@ -1,10 +1,10 @@
 <template>
-  <div class="tabs-wrapper">
-    <div class="tabs">
+  <div class="mat-tabs-wrapper">
+    <div class="mat-tabs">
       <slot />
     </div>
     <div
-      class="tabs-ink-line"
+      class="mat-tabs-ink-line"
       :style="inkLinePosition"
     ></div>
   </div>
@@ -60,10 +60,10 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../styles/main";
-  .tabs-wrapper {
+  .mat-tabs-wrapper {
     position: relative;
   }
-  .tabs {
+  .mat-tabs {
     display: flex;
     border-bottom: 1px solid #f3f3f3;
     overflow-x: scroll;

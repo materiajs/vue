@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-container" :style="_getStyle">
+  <div class="mat-container" :style="_getStyle">
     <slot />
   </div>
 </template>

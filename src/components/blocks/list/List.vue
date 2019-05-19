@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tb-list"
+    class="mat-list"
     :class="{ bordered }"
     :style="getElementStyle">
     <slot>
@@ -8,7 +8,7 @@
         v-for="(item, key) in items"
         :key="key"
         @click="item.onClick"
-        class="tb-list-item" >
+        class="mat-list-item" >
         <slot name="item" v-bind:item="item" />
       </div>
     </slot>
@@ -33,7 +33,7 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../styles/main";
-  .tb-list {
+  .mat-list {
     &.bordered {
       border: 1px solid $primary-color-light;
     }

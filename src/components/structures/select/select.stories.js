@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 import Select from './Select.vue';
 
-Vue.component('tb-select', Select);
+Vue.component('mat-select', Select);
 
 const storyData = {
   singleSelect: [
@@ -41,37 +41,37 @@ storiesOf('Select', module)
     }),
     template: `
       <div>
-        <tb-select
+        <mat-select
           placeholder="Select single"
           v-model="singleValue"
           :single-value="true"
           :options="singleSelect" />
         <br>
-        <tb-select
+        <mat-select
           placeholder="Select multiple (Hide selected)"
           v-model="multipleBasicValue"
           :hideSelected="true"
           :options="multipleBasic">
-        </tb-select>
+        </mat-select>
         <br>
-        <tb-select
+        <mat-select
           placeholder="Select multiple with checkboxes"
           v-model="multipleWithCheckboxesValue"
           :show-checkboxes="true"
           :options="multipleWithChecboxes">
-        </tb-select>
-        <tb-select
+        </mat-select>
+        <mat-select
           placeholder="Select multiple with checkboxes"
           :single-value="true"
           :close-on-select="true"
           :options="singleSelect">
           <template slot="trigger">
-            <tb-button>Trigger slot</tb-button>
+            <mat-button>Trigger slot</mat-button>
           </template>
           <template slot="item" slot-scope="{ option }">
             Item: {{ option.value }}
           </template>
-        </tb-select>
+        </mat-select>
       </div>
     `,
   }));

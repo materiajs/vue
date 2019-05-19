@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-side-bar-item">
+  <div class="mat-side-bar-item">
     Test
     <slot />
   </div>
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-side-bar-item {
+  .mat-side-bar-item {
     padding: 15px;
     display: block;
     border-bottom: 1px solid #bbdefb;

@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-button-group">
+  <div class="mat-button-group">
     <slot />
   </div>
 </template>
@@ -11,9 +11,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-button-group {
+  .mat-button-group {
     white-space: nowrap;
-    /deep/ .tb-button {
+    /deep/ .mat-button {
       background: #212121;
       box-shadow: none;
       border: 1px solid #f3f3f3;

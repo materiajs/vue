@@ -1,19 +1,19 @@
 <template>
   <button
     @click="action"
-    class="tb-button"
+    class="mat-button"
     :style="_getElementStyle"
     :class="[color]">
     {{ text }}
     <div
       v-if="$slots.left"
-      class="tb-button-slot tb-button-slot-left">
+      class="mat-button-slot mat-button-slot-left">
       <slot name="left" />
     </div>
     <slot />
     <div
       v-if="$slots.right"
-      class="tb-button-slot tb-button-slot-right">
+      class="mat-button-slot mat-button-slot-right">
       <slot name="right" />
     </div>
   </button>
@@ -24,7 +24,7 @@ import t from 'vue-types';
 import themeable from '../../../mixins/themeable';
 
 export default {
-  name: 'tb-button',
+  name: 'mat-button',
   mixins: [
     themeable,
   ],
@@ -45,7 +45,7 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../styles/main";
-  .tb-button {
+  .mat-button {
     align-items: center;
     border-radius: $border-radius-light;
     border: none;

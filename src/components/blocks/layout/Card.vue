@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-card" :style="_getStyle">
+  <div class="mat-card" :style="_getStyle">
     <slot />
   </div>
 </template>

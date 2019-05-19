@@ -2,7 +2,7 @@
   <div
     @click="$emit('click')"
     :class="{ dark }"
-    class="tb-nav-link tb-flex-center tb-standard-transition"
+    class="mat-nav-link mat-flex-center mat-standard-transition"
   >
     <template v-if="href">
       <a :href="href" :target="target">
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-nav-link {
+  .mat-nav-link {
     text-decoration: none;
     color: inherit;
     cursor: pointer;

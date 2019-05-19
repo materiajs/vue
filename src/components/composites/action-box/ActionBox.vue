@@ -1,13 +1,13 @@
 <template>
-  <div class="tb-action-box-wrapper">
+  <div class="mat-action-box-wrapper">
     <div
       v-if="value"
       :class="[position, size]"
-      class="tb-action-box">
+      class="mat-action-box">
       <div
         :style="getElementStyle"
         v-on-clickaway="onClickOutside"
-        class="tb-action-box-body tb-card-light">
+        class="mat-action-box-body mat-card-light">
         <slot />
       </div>
     </div>
@@ -21,7 +21,7 @@ import themeable from '@/mixins/themeable';
 import sizeable from '@/mixins/sizeable';
 
 export default {
-  name: 'tb-action-box',
+  name: 'mat-action-box',
   mixins: [
     clickaway,
     themeable,
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-action-box {
+  .mat-action-box {
     min-width: 320px;
     position: absolute;
     padding: 3px;

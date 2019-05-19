@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-image">
+  <div class="mat-image">
     <img :src="src" :alt="alt">
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-image {
+  .mat-image {
     display: flex;
     height: 240px;
     align-items: center;

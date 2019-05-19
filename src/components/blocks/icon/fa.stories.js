@@ -19,19 +19,19 @@ storiesOf('Fa', module)
     template: `
       <div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <tb-fa
+        <mat-fa
           size="large"
           :action="open"
           icon="angle-down" >
-          <tb-action-box
+          <mat-action-box
             @close="close"
             position="bottom-right" 
             :value="value">
             <div style="padding: 15px; min-width: 200px">
               Position bottom right - click away to close
             </div>
-          </tb-action-box>
-        </tb-fa>
+          </mat-action-box>
+        </mat-fa>
       </div>
 </div>
     `,

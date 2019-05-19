@@ -1,12 +1,12 @@
 {
-  "name": "toolblox",
-  "main": "./dist/toolblox.common.js",
-  "version": "0.1.26",
+  "name": "@materiajs/vue",
+  "main": "./dist/materiajs-vue.common.js",
+  "version": "0.1.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name toolblox ./src/index.js",
-    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --target lib --name toolblox ./src/index.js",
+    "build-bundle": "vue-cli-service build --target lib --name materiajs-vue ./src/index.js",
+    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --target lib --name materiajs-vue ./src/index.js",
     "lint": "vue-cli-service lint",
     "lint-fix": "vue-cli-service lint --fix",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",

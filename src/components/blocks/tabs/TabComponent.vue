@@ -1,5 +1,5 @@
 <template>
-  <div @click="tabClick" class="tab">
+  <div @click="tabClick" class="mat-tab">
     <slot />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tab {
+  .mat-tab {
     align-items: center;
     cursor: pointer;
     display: flex;

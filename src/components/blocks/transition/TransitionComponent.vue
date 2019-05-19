@@ -17,7 +17,7 @@ import t from 'vue-types';
 import Velocity from 'velocity-animate';
 
 export default {
-  name: 'tb-transition',
+  name: 'mat-transition',
   props: {
     duration: t.number.def(300),
     easing: t.string.def('easeInOutQuart'),

@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-flex-item" :style="{ flex }">
+  <div class="mat-flex-item" :style="{ flex }">
     <slot />
   </div>
 </template>

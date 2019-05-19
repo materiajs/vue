@@ -23,47 +23,47 @@ storiesOf('Toolbar', module)
     },
     template: `
       <div>
-        <tb-toolbar>
+        <mat-toolbar>
           Primary
-          <tb-spacer />
+          <mat-spacer />
   
-        </tb-toolbar>
+        </mat-toolbar>
         <br>
-        <tb-toolbar color="accent" :shadow="false" size="small">
+        <mat-toolbar color="accent" :shadow="false" size="small">
           Accent
-          <tb-spacer />
-          <tb-nav-link @click="onClickLink">No shadow</tb-nav-link>
-          <tb-nav-link>Small</tb-nav-link>
-        </tb-toolbar>
+          <mat-spacer />
+          <mat-nav-link @click="onClickLink">No shadow</mat-nav-link>
+          <mat-nav-link>Small</mat-nav-link>
+        </mat-toolbar>
         </br>
-        <tb-toolbar color="primary-light"  size="large">
+        <mat-toolbar color="primary-light"  size="large">
           Primary light
-          <tb-spacer />
-          <tb-nav-link>Large</tb-nav-link>
-        </tb-toolbar>
+          <mat-spacer />
+          <mat-nav-link>Large</mat-nav-link>
+        </mat-toolbar>
         <br>
-         <tb-toolbar :color="null" :shadow="false">
+         <mat-toolbar :color="null" :shadow="false">
           Null color 
-          <tb-spacer />
-          <tb-nav-link target="_blank" href="http://storybook.andyfeely.com">No shadow</tb-nav-link>
-        </tb-toolbar>
+          <mat-spacer />
+          <mat-nav-link target="_blank" href="http://storybook.andyfeely.com">No shadow</mat-nav-link>
+        </mat-toolbar>
         <br>
-        <tb-toolbar :dark="dark">
+        <mat-toolbar :dark="dark">
           Dark theme primary
-        <tb-spacer></tb-spacer>
-        <tb-nav-link @click="onClickLink">NavLink 1</tb-nav-link>
-        <tb-nav-link>NavLink 2</tb-nav-link>
-        </tb-toolbar>
+        <mat-spacer></mat-spacer>
+        <mat-nav-link @click="onClickLink">NavLink 1</mat-nav-link>
+        <mat-nav-link>NavLink 2</mat-nav-link>
+        </mat-toolbar>
          <br>
-         <tb-toolbar :dark="dark" color="primary-light">
+         <mat-toolbar :dark="dark" color="primary-light">
           Dark theme primary light
-        </tb-toolbar>
+        </mat-toolbar>
          <br>
-        <tb-toolbar color="accent" :dark="true" :shadow="false" size="small">
+        <mat-toolbar color="accent" :dark="true" :shadow="false" size="small">
           Dark theme accent
-          <tb-spacer />
-          <tb-nav-link @click="onClickLink">Small</tb-nav-link>
-        </tb-toolbar>
+          <mat-spacer />
+          <mat-nav-link @click="onClickLink">Small</mat-nav-link>
+        </mat-toolbar>
       </div>
     `,
   }));

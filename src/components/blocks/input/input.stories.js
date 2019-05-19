@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueInfoAddon from 'storybook-addon-vue-info';
 import Input from './Input.vue';
 
-Vue.component('tb-input', Input);
+Vue.component('mat-input', Input);
 
 storiesOf('Input', module)
   .addDecorator(VueInfoAddon)
@@ -14,9 +14,9 @@ storiesOf('Input', module)
     }),
     template: `
       <div>
-        <tb-input v-model="value" />
+        <mat-input v-model="value" />
         <br>
-        <tb-input 
+        <mat-input 
           v-model="value"
           placeholder="With clear button on right" 
           :show-clear-button="true" />

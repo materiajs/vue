@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-grid-layout" :style="{ 'grid-template-columns': gridTemplateColumns }">
+  <div class="mat-grid-layout" :style="{ 'grid-template-columns': gridTemplateColumns }">
     <slot />
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-grid-layout {
+  .mat-grid-layout {
     display: grid;
   }
 </style>

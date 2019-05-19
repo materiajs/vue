@@ -1,57 +1,57 @@
 <template>
   <div id="app">
-    <tb-toolbar type="primary" :dark="dark" position="sticky" top="0">
+    <mat-toolbar type="primary" :dark="dark" position="sticky" top="0">
       andyfeely.com
-      <tb-spacer></tb-spacer>
-    </tb-toolbar>
+      <mat-spacer></mat-spacer>
+    </mat-toolbar>
     <div class="main">
-      <tb-card>
-        <tb-padding padding="15px">
-          <tb-padding padding="0 0 15px">
-            <tb-tabs v-model="windowValue">
-              <tb-tab :tab-key="0">
+      <mat-card>
+        <mat-padding padding="15px">
+          <mat-padding padding="0 0 15px">
+            <mat-tabs v-model="windowValue">
+              <mat-tab :tab-key="0">
                 Window 1
-              </tb-tab>
-              <tb-tab :tab-key="1">
+              </mat-tab>
+              <mat-tab :tab-key="1">
                 Window 2
-              </tb-tab>
-              <tb-tab :tab-key="2">
+              </mat-tab>
+              <mat-tab :tab-key="2">
                 Window 3 - with a little extra
-              </tb-tab>
-              <tb-tab :tab-key="3">
+              </mat-tab>
+              <mat-tab :tab-key="3">
                 Window 4
-              </tb-tab>
-            </tb-tabs>
-          </tb-padding>
-          <tb-window v-model="windowValue">
-            <tb-window-item :value="0">
+              </mat-tab>
+            </mat-tabs>
+          </mat-padding>
+          <mat-window v-model="windowValue">
+            <mat-window-item :value="0">
               Window 1
-            </tb-window-item>
-            <tb-window-item :value="1">
-              <tb-code :value="singleCode" lang="html" />
-            </tb-window-item>
-            <tb-window-item :value="2">
-              <tb-code :value="singleCode" lang="html" />
-            </tb-window-item>
-            <tb-window-item :value="3">
+            </mat-window-item>
+            <mat-window-item :value="1">
+              <mat-code :value="singleCode" lang="html" />
+            </mat-window-item>
+            <mat-window-item :value="2">
+              <mat-code :value="singleCode" lang="html" />
+            </mat-window-item>
+            <mat-window-item :value="3">
               Window 3
-            </tb-window-item>
-          </tb-window>
-        </tb-padding>
-      </tb-card>
+            </mat-window-item>
+          </mat-window>
+        </mat-padding>
+      </mat-card>
     </div>
   </div>
 </template>
 
 <script>
-import { TbCode, TbWindow, TbWindowItem, TbTab, TbTabs } from './components/blocks';
+import { MatCode, MatWindow, MatWindowItem, MatTab, MatTabs } from './components/blocks';
 
 export default {
   name: 'app',
   data: () => ({
     windowValue: 0,
     dark: false,
-    singleCode: '<tb-select\n'
+    singleCode: '<mat-select\n'
       + '  v-model="singleValue"\n'
       + '  placeholder="Select single"\n'
       + '  :single-value="true"\n'
@@ -59,9 +59,9 @@ export default {
       + '/>',
   }),
   components: {
-    TbCode,
-    TbWindow,
-    TbWindowItem,
+    MatCode,
+    MatWindow,
+    MatWindowItem,
   },
 };
 </script>

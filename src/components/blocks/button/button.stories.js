@@ -9,38 +9,38 @@ storiesOf('Button', module)
     }),
     template: `
       <div>
-        <tb-button>
+        <mat-button>
           Submit
-        </tb-button>
-        <tb-button color="warn">
+        </mat-button>
+        <mat-button color="warn">
           Warn
-        </tb-button>
-        <tb-button color="primary">
+        </mat-button>
+        <mat-button color="primary">
           Primary
-        </tb-button>
+        </mat-button>
         <br>
         <br>
           <h3>
             With icons
           </h3>
-         <tb-button>
+         <mat-button>
           Submit
           <template slot="right">
-            <tb-fa icon="check" />
+            <mat-fa icon="check" />
           </template>
-        </tb-button>
-        <tb-button color="warn">
+        </mat-button>
+        <mat-button color="warn">
           <template slot="right">
-            <tb-fa icon="exclamation-triangle" />
+            <mat-fa icon="exclamation-triangle" />
           </template>
           Warn
-        </tb-button>
-        <tb-button color="primary">
+        </mat-button>
+        <mat-button color="primary">
          Icon left
            <template slot="left">
-            <tb-fa icon="angle-left" />
+            <mat-fa icon="angle-left" />
           </template>
-        </tb-button>
+        </mat-button>
       </div>
     `,
   }));

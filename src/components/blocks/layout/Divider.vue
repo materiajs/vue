@@ -1,22 +1,22 @@
 <template>
-  <div class="tb-divider">
-    <div class="tb-divider-line"></div>
-    <div class="tb-divider-content">
+  <div class="mat-divider">
+    <div class="mat-divider-line"></div>
+    <div class="mat-divider-content">
       <slot />
     </div>
-    <div class="tb-divider-line"></div>
+    <div class="mat-divider-line"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'tb-divider',
+  name: 'mat-divider',
 };
 </script>
 
 <style scoped lang="scss">
   @import "../../../styles/main";
-  .tb-divider {
+  .mat-divider {
     align-items: center;
     color: $typography-primary-text-color;
     display: flex;

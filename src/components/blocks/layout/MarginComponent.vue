@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-margin-component" :style="{ margin }">
+  <div class="mat-margin-component" :style="{ margin }">
     <slot />
   </div>
 </template>

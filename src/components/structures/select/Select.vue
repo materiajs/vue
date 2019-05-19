@@ -1,9 +1,9 @@
 <template>
   <div
     @click="onClickSelect"
-    class="tb-select">
+    class="mat-select">
     <slot name="trigger">
-      <tb-input
+      <mat-input
         v-model="searchString"
         :placeholder="placeholder"
         :focused="open"
@@ -13,19 +13,19 @@
         <div v-if="singleValue && value">
           {{ value.value }}
         </div>
-        <tb-chip-list
+        <mat-chip-list
           v-else-if="selectedItemsAsChips.length" :chips="selectedItemsAsChips" />
-      </tb-input>
+      </mat-input>
     </slot>
-    <div class="tb-select-action-box-wrapper">
-      <tb-action-box
+    <div class="mat-select-action-box-wrapper">
+      <mat-action-box
         @close="onCloseSelect"
         :position="position" :value="open">
-        <tb-list
+        <mat-list
           v-if="listItems.length"
           :items="listItems">
           <template slot="item" slot-scope="{ item }">
-            <tb-checkbox
+            <mat-checkbox
               v-if="showCheckboxes"
               :value="isSelected(item.option)"
               @input="() => onClickOption(item.option)"
@@ -36,14 +36,14 @@
             </slot>
           </template>
           <slot />
-        </tb-list>
+        </mat-list>
         <div
           v-else
-          class="tb-select-action-box-wrapper-no-options"
+          class="mat-select-action-box-wrapper-no-options"
         >
           No options
         </div>
-      </tb-action-box>
+      </mat-action-box>
     </div>
   </div>
 </template>
@@ -53,11 +53,11 @@ import t from 'vue-types';
 import isEmpty from 'lodash/isEmpty';
 import Fuse from 'fuse.js';
 import themeable from '@/mixins/themeable';
-import { TbInput, TbList, TbCheckbox } from '@/components/blocks';
-import { TbActionBox, TbChipList } from '@/components/composites';
+import { MatInput, MatList, MatCheckbox } from '@/components/blocks';
+import { MatActionBox, MatChipList } from '@/components/composites';
 
 export default {
-  name: 'tb-select',
+  name: 'mat-select',
   mixins: [
     themeable,
   ],
@@ -73,11 +73,11 @@ export default {
     position: t.string.def('bottom-left'),
   },
   components: {
-    TbActionBox,
-    TbCheckbox,
-    TbChipList,
-    TbList,
-    TbInput,
+    MatActionBox,
+    MatCheckbox,
+    MatChipList,
+    MatList,
+    MatInput,
   },
   data: () => ({
     baseFuseOptions: {
@@ -189,10 +189,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-select {
+  .mat-select {
     cursor: text;
 
-    .tb-chip-list {
+    .mat-chip-list {
       margin: -5px 0;
     }
     &-action-box-wrapper {

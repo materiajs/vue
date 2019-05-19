@@ -1,7 +1,7 @@
 <template>
   <div
-    class="tb-toolbar"
-    :class="[shadow ? 'tb-box-shadow-heavy' : '', size]"
+    class="mat-toolbar"
+    :class="[shadow ? 'mat-box-shadow-heavy' : '', size]"
     :style="_getStyle">
     <slot />
   </div>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-toolbar {
+  .mat-toolbar {
     padding: 0 15px;
     position: relative;
     display: flex;
@@ -53,7 +53,7 @@ export default {
     &.large {
       height: 75px;
     }
-    &.tb-box-shadow-heavy {
+    &.mat-box-shadow-heavy {
       z-index: 10;
     }
     >* {

@@ -13,7 +13,7 @@ input {
   font-size: 16px;
 }
 
-.tb-frame {
+.mat-frame {
   background: white;
   border: 1px solid #ccc;
   border-radius: $border-radius-standard;
@@ -43,7 +43,7 @@ input {
     user-select: none;
 
     &.raised {
-      .tb-frame-placeholder-bg {
+      .mat-frame-placeholder-bg {
         content: '';
         position: absolute;
         width: 100%;
@@ -64,7 +64,7 @@ input {
 }
 
 // Card
-.tb-card {
+.mat-card {
   background: white;
   border-radius: $border-radius-standard;
   box-shadow: $box-shadow-standard;
@@ -76,17 +76,17 @@ input {
   }
 }
 
-.tb-padding-standard {
+.mat-padding-standard {
   padding: $padding-standard;
 }
 
-.tb-flex-center {
+.mat-flex-center {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.tb-absolute-center {
+.mat-absolute-center {
   left: 50%;
   position: absolute;
   top: 50%;
@@ -94,17 +94,17 @@ input {
 }
 
 // Transitions && Animations
-.tb-fade-enter-active, .tb-fade-leave-active {
+.mat-fade-enter-active, .mat-fade-leave-active {
   transition: opacity .3s;
 }
-.tb-fade-enter, .tb-fade-leave-to {
+.mat-fade-enter, .mat-fade-leave-to {
   opacity: 0;
 }
 
-.tb-standard-transition {
+.mat-standard-transition {
   transition: $standard-transition;
 }
 
-.tb-box-shadow-heavy {
+.mat-box-shadow-heavy {
   box-shadow: $box-shadow-heavy;
 }

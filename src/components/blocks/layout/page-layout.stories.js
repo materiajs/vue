@@ -6,16 +6,16 @@ storiesOf('PageLayout', module)
   .add('Basic usage', () => ({
     template: `
       <div>
-        <tb-page-layout>
+        <mat-page-layout>
           Content here.
           
           This element always fills to at least the bottom of the screen
-        </tb-page-layout>
-        <tb-container>
-          TbContainer
+        </mat-page-layout>
+        <mat-container>
+          MatContainer
           <br>
           This has a max-width of 650px and can be used for docs, articles etc.
-        </tb-container>
+        </mat-container>
       </div>
     `,
   }));

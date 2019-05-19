@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-padding-component"  :style="{ padding }">
+  <div class="mat-padding-component"  :style="{ padding }">
     <slot />
   </div>
 </template>

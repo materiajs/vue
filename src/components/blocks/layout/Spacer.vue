@@ -1,5 +1,5 @@
 <template>
-  <div class="tb-spacer"></div>
+  <div class="mat-spacer"></div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-spacer {
+  .mat-spacer {
     flex: 1;
     min-height: 15px;
   }

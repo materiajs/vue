@@ -1,8 +1,8 @@
 <template>
-  <div class="tb-chip-list">
-    <div class="tb-chip-list-title" v-if="title" v-text="title"></div>
-    <div class="tb-chip-list-wrapper">
-      <tb-chip
+  <div class="mat-chip-list">
+    <div class="mat-chip-list-title" v-if="title" v-text="title"></div>
+    <div class="mat-chip-list-wrapper">
+      <mat-chip
         v-for="chip in chipsList"
         :key="chip.id"
         v-bind="chip" />
@@ -18,12 +18,12 @@
 
 <script>
 import t from 'vue-types';
-import { TbChip } from '@/components/blocks';
+import { MatChip } from '@/components/blocks';
 
 export default {
-  name: 'tb-chip-list',
+  name: 'mat-chip-list',
   components: {
-    TbChip,
+    MatChip,
   },
   data: () => ({
     showAll: false,
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-chip-list {
+  .mat-chip-list {
     display: inline;
     &-title {
       font-weight: bold;

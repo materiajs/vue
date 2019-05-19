@@ -1,7 +1,7 @@
 <template>
   <div
     @click="onClickInputWrapper"
-    class="tb-input tb-frame"
+    class="mat-input mat-frame"
     :class="{ focused: isFocused }"
     :style="wrapperStyle"
     v-on-clickaway="onInputBlur"
@@ -26,15 +26,15 @@
     <div
       v-if="showClearButton"
       @click.stop="clearValue"
-      class="tb-input-clear-button">
+      class="mat-input-clear-button">
       <i class="fa fa-times-circle"></i>
     </div>
     <div
-      class="tb-frame-placeholder"
+      class="mat-frame-placeholder"
       :class="{ focused: isFocused, raised: placeholderRaised }"
       :style="getDarkElementStyle"
     >
-      <div class="tb-frame-placeholder-bg"></div>
+      <div class="mat-frame-placeholder-bg"></div>
       {{ placeholder }}
     </div>
   </div>
@@ -46,7 +46,7 @@ import { mixin as clickaway } from 'vue-clickaway';
 import themeable, { defaultAccentColor } from '../../../mixins/themeable';
 
 export default {
-  name: 'tb-input',
+  name: 'mat-input',
   mixins: [
     clickaway,
     themeable,
@@ -104,7 +104,7 @@ export default {
 <style scoped lang="scss">
   @import "../../../styles/main";
 
-  .tb-input {
+  .mat-input {
     cursor: text;
     position: relative;
     display: flex;

@@ -1,6 +1,6 @@
 <template>
-  <div class="tb-dialog">
-    <tb-card padding="30px">Test</tb-card>
+  <div class="mat-dialog">
+    <mat-card padding="30px">Test</mat-card>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-dialog {
+  .mat-dialog {
     position: fixed;
     top: 50%;
   }

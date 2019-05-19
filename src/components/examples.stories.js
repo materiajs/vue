@@ -25,55 +25,55 @@ storiesOf('Toolblox', module)
     },
     template: `
       <div style="padding: 15px;">
-        <tb-title>Toolblox</tb-title>
-        <tb-title :subtitle="true" size="xs" >Welcome</tb-title>
-        <tb-line-break color="primary"/>
+        <mat-title>Toolblox</mat-title>
+        <mat-title :subtitle="true" size="xs" >Welcome</mat-title>
+        <mat-line-break color="primary"/>
         <p>
          Here are some examples of the components available.
         </p>
         <p>
          Be sure to check out the component's storybook to see API docs and more detailed examples.
         </p>
-        <tb-spacer />
-        <tb-card>
-          <tb-padding padding="15px">
-            <tb-toolbar size="small" color="accent" :shadow="false">
+        <mat-spacer />
+        <mat-card>
+          <mat-padding padding="15px">
+            <mat-toolbar size="small" color="accent" :shadow="false">
               Input
-              <tb-spacer />
-              <tb-nav-link @click="onSelectStorybook('Input')">
-                <tb-fa icon="bookmark" />Stories
-              </tb-nav-link>
-            </tb-toolbar>
-            <tb-spacer />
-            <tb-input></tb-input>
-            <tb-spacer />
-            <tb-input 
+              <mat-spacer />
+              <mat-nav-link @click="onSelectStorybook('Input')">
+                <mat-fa icon="bookmark" />Stories
+              </mat-nav-link>
+            </mat-toolbar>
+            <mat-spacer />
+            <mat-input></mat-input>
+            <mat-spacer />
+            <mat-input 
               :placeholder="input2Placeholder"
-              v-model="input2Placeholder"></tb-input>
-            <tb-spacer />
-            <tb-input 
+              v-model="input2Placeholder"></mat-input>
+            <mat-spacer />
+            <mat-input 
               placeholder="Clear button on right"
-              :show-clear-button="true"></tb-input>
-          </tb-padding>
-        </tb-card>
-        <tb-spacer />
-        <tb-card>
-          <tb-padding padding="15px">
-            <tb-toolbar size="small" color="primary-light" :shadow="false">
+              :show-clear-button="true"></mat-input>
+          </mat-padding>
+        </mat-card>
+        <mat-spacer />
+        <mat-card>
+          <mat-padding padding="15px">
+            <mat-toolbar size="small" color="primary-light" :shadow="false">
               Select
-              <tb-spacer />
-              <tb-nav-link @click="onSelectStorybook('Select')">
-                <tb-fa icon="bookmark" />Stories
-              </tb-nav-link>
-            </tb-toolbar>
-            <tb-spacer />
-            <tb-select
+              <mat-spacer />
+              <mat-nav-link @click="onSelectStorybook('Select')">
+                <mat-fa icon="bookmark" />Stories
+              </mat-nav-link>
+            </mat-toolbar>
+            <mat-spacer />
+            <mat-select
               v-model="selectedOptions"
               placeholder="Select an option"
               :options="options"
             />
-          </tb-padding>
-        </tb-card>
+          </mat-padding>
+        </mat-card>
       </div>
     `,
   }));

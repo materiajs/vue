@@ -1,8 +1,8 @@
 <template>
-  <div class="tb-paragraph">
-    <tb-padding :padding="padding">
+  <div class="mat-paragraph">
+    <mat-padding :padding="padding">
       <slot />
-    </tb-padding>
+    </mat-padding>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-paragraph {
+  .mat-paragraph {
     line-height: 1.5;
   }
 </style>

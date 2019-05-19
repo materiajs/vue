@@ -1,17 +1,17 @@
 <template>
-  <tb-margin :margin="margin">
+  <mat-margin :margin="margin">
     <div
-      class="tb-title"
+      class="mat-title"
       :class="{ [size]: size, subtitle }"
       :style="getElementStyle"
     >
-      <tb-padding :padding="padding">
+      <mat-padding :padding="padding">
         <slot>
           {{ value }}
         </slot>
-      </tb-padding>
+      </mat-padding>
     </div>
-  </tb-margin>
+  </mat-margin>
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
 <style scoped lang="scss">
   @import "../../../styles/main";
 
-  .tb-title {
+  .mat-title {
     font-size: 2rem;
     margin-bottom: 10px;
     font-weight: bold;

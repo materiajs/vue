@@ -17,30 +17,30 @@ storiesOf('Toolblox', module)
     },
     template: `
       <div style="padding: 15px;">
-        <tb-title>Toolblox</tb-title>
-        <tb-title :subtitle="true" size="xs" >Welcome</tb-title>
-        <tb-line-break color="primary"/>
+        <mat-title>Toolblox</mat-title>
+        <mat-title :subtitle="true" size="xs" >Welcome</mat-title>
+        <mat-line-break color="primary"/>
         <p>
           Toolblox is a library of Vue components that I am currently building.
         </p>
         <p>
           It is by no means production ready and is only fit for demo purposes so far.
         </p>
-        <tb-toolbar 
+        <mat-toolbar 
           size="small"
           color="primary-light"
           :shadow="false">
           Contents
-          <tb-spacer />
-        </tb-toolbar>
-        <tb-list :bordered="true">
+          <mat-spacer />
+        </mat-toolbar>
+        <mat-list :bordered="true">
           <div
             v-for="link in links" 
             @click="onSelectLink(link)">
-            <tb-fa icon="circle" size="small" />
+            <mat-fa icon="circle" size="small" />
             {{ link }}  
           </div>
-        </tb-list>
+        </mat-list>
       </div>
     `,
   }));

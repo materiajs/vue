@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[flexDirection, wrapper ? 'tb-flex-layout-wrapper' : 'tb-flex-layout']"
+    :class="[flexDirection, wrapper ? 'mat-flex-layout-wrapper' : 'mat-flex-layout']"
    :style="{ 'align-items': alignItems, 'flex-direction': flexDirection }">
     <slot />
   </div>
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tb-flex-layout-wrapper {
+  .mat-flex-layout-wrapper {
     display: flex;
     /deep/ >* {
       display: flex;
@@ -37,7 +37,7 @@ export default {
       flex-direction: column;
     }
   }
-  .tb-flex-layout {
+  .mat-flex-layout {
     display: flex;
     justify-content: space-evenly;
   }

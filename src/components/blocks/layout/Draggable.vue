@@ -1,9 +1,9 @@
 <template>
   <draggable
-    :class="['list-group', 'tb-frame builder']"
+    :class="['list-group', 'mat-frame builder']"
     v-model="valueProp"
     v-bind="dragOptions"
-    handle=".tb-handle"
+    handle=".mat-handle"
     @start="isDragging = true"
     @end="isDragging = false"
   >
@@ -53,7 +53,7 @@ export default {
     min-height: 30px;
     padding: 15px;
   }
-  /deep/ .tb-handle {
+  /deep/ .mat-handle {
     cursor: move !important;
   }
   /deep/ .ghost {

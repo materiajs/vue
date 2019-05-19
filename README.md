@@ -1,4 +1,4 @@
-# toolblox
+# MateriaJS Vue
 
 ## Project setup
 ```
